@@ -10,8 +10,8 @@ public class Joueur {
 
     public Joueur(int pv) {
         this.pv = pv;
-        this.x = new SimpleIntegerProperty(350);// Initialise la propriété x à 375
-        this.y = new SimpleIntegerProperty(350);// Initialise la propriété y à 375
+        this.x = new SimpleIntegerProperty(0);// Initialise la propriété x à 375
+        this.y = new SimpleIntegerProperty(0);// Initialise la propriété y à 375
         this.id = 0;
     }
     /* --------------------X---------------*/
@@ -48,6 +48,6 @@ public class Joueur {
 
     // Vérifie que x et y sont dans les limites [0, 700]
     public boolean dansMap(int x, int y){
-        return (0<= x && x <= 700 && 0<= y && y <= 700);
+        return (0<= x && x+20 <= 700 && 0<= y && y+20 <= 700);
     }
 }

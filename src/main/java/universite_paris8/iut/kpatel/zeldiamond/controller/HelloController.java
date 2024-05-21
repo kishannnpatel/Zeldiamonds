@@ -39,10 +39,6 @@ public class HelloController implements Initializable {
 
     private int temps;
 
-
-
-
-
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
     @Override
@@ -79,7 +75,7 @@ public class HelloController implements Initializable {
     public void spriteJoueur(){
 
         //size du joueur 25 sur 25
-        Rectangle rec = new Rectangle(30, 30);
+        Rectangle rec = new Rectangle(20, 20);
         // color du joueur
         rec.setFill(Color.STEELBLUE);
         // Attribut un id unique au rectangle qui est basé sur l'ID du joueur.
@@ -93,19 +89,14 @@ public class HelloController implements Initializable {
         rec.translateXProperty().bind(joueur.Xproperty());
         // translation Y du rectangle avec la propriété Y du joueur.
         rec.translateYProperty().bind(joueur.Yproperty());
-
-
-
     }
-
-
 
 /*----------------------SpriteAnimation------------------------------*/
 
     private void spriteAnimation(){
 
         //cree un nouv rectangle avec sa taille
-        Rectangle rec = new Rectangle(25, 25); //size de l'enemie  20 sur 20
+        Rectangle rec = new Rectangle(20, 20); //size de l'enemie  20 sur 20
         rec.setFill(Color.GREEN); // color de l'enemie
 
         this.PaneMap.getChildren().add(rec); // Ajout du rectangle au panneau sur la carte
@@ -133,7 +124,7 @@ public class HelloController implements Initializable {
                         System.out.println("fin");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps %5 == 0) {
-                        System.out.println("un tour");
+                        //System.out.println("un tour");
                         enemie.setX(enemie.getX()+5);// Déplace ennemi de 5 pixels vers la droite
                         enemie.setY(enemie.getY()+5);// Déplace ennemi de 5 pixels vers le bas
                     }

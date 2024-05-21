@@ -10,6 +10,8 @@ public class touche implements EventHandler<KeyEvent>{
 
     private Joueur joueur;
 
+    private int vitesse = 10;
+
     public touche(Joueur joueur) {
         this.joueur = joueur;
     }
@@ -26,8 +28,8 @@ public class touche implements EventHandler<KeyEvent>{
 
     private void up(KeyEvent event){
         if (event.getCode() == KeyCode.Z){
-            int t = joueur.getY() -30;
-            if(joueur.dansMap(joueur.getX(), t-1)){
+            int t = joueur.getY() -this.vitesse;
+            if(joueur.dansMap(joueur.getX(), t)){
                joueur.setY(t);
             }
         }
@@ -35,7 +37,7 @@ public class touche implements EventHandler<KeyEvent>{
 
     private void down(KeyEvent event){
         if (event.getCode() == KeyCode.S){
-            int t = joueur.getY() + 30;
+            int t = joueur.getY() +this.vitesse;
             if(joueur.dansMap(joueur.getX(), t)){
                 joueur.setY(t);
             }
@@ -46,7 +48,7 @@ public class touche implements EventHandler<KeyEvent>{
 
     private void right(KeyEvent event){
         if (event.getCode() == KeyCode.D){
-            int t = joueur.getX() + 30;
+            int t = joueur.getX() +this.vitesse;
             if(joueur.dansMap(t, joueur.getY())){
                 joueur.setX(t);
             }
@@ -55,8 +57,8 @@ public class touche implements EventHandler<KeyEvent>{
 
     private void left(KeyEvent event){
         if (event.getCode() == KeyCode.Q){
-            int t = joueur.getX() - 30;
-            if(joueur.dansMap(t+1, joueur.getY())){
+            int t = joueur.getX() - this.vitesse;
+            if(joueur.dansMap(t, joueur.getY())){
                 joueur.setX(t);
             }
         }
