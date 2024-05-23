@@ -69,7 +69,6 @@ public class HelloController implements Initializable {
             }
         }
     }
-
     // Partie pour le gameLoop
 
     public void spriteJoueur(){
