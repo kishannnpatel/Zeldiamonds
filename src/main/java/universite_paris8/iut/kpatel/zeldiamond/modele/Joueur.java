@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Joueur {
     private int pv;
-    private IntegerProperty x , y ;
+    private IntegerProperty x , y , ancienX , ancienY;
     private int id;
 
     public Joueur(int pv) {
@@ -48,6 +48,6 @@ public class Joueur {
 
     // Vérifie que x et y sont dans les limites [0, 700]
     public boolean dansMap(int x, int y){
-        return (0<= x && x+20 <= 700 && 0<= y && y+20 <= 700);
+        return (0<= x && x+20 <= 800 && 0<= y && y+20 <= 800);
     }
 }
