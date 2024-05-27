@@ -90,8 +90,8 @@ public class Controller implements Initializable {
         Pane pane = vueJoueur.getRec();
 
         // Binding des propriétés de translation
-        joueur.translateXproperty().bind(pane.translateXProperty());
-        joueur.translateYproperty().bind(pane.translateYProperty());
+        pane.translateXProperty().bind(joueur.translateXproperty());
+        pane.translateYProperty().bind(joueur.translateYproperty());
     }
 
     /*----------------------SpriteAnimation------------------------------*/

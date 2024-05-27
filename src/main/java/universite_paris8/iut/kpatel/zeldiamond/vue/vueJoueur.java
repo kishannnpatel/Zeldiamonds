@@ -20,7 +20,9 @@ public class vueJoueur {
 
         public void creeVue() {
             this.img = new ImageView();
-            img.setImage(new Image(new File("src/main/resources/universite_paris8/iut/kpatel/zeldiamond/player/boy_down_1.png").toURI().toString()));
+            img.setImage(new Image("" +
+                    "file:src/main/resources/universite_paris8/iut/kpatel/" +
+                    "zeldiamond/joueur/boy_down_1.png"));
             img.setFitHeight(35);
             img.setFitWidth(35);
             this.img.setId(String.valueOf(id));
@@ -28,6 +30,10 @@ public class vueJoueur {
             rec = new Pane();
             rec.getChildren().add(img);
             paneMap.getChildren().add(rec);
+
+            System.out.println(img.getX() );
+            System.out.println(img.getY() );
+
         }
 
         public ImageView getImg() {
