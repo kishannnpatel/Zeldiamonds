@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Joueur;
 
 import java.net.URL;
 import java.util.ResourceBundle;
