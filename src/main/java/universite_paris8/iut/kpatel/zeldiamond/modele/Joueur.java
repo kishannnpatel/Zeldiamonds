@@ -48,6 +48,6 @@ public class Joueur {
 
     // Vérifie que x et y sont dans les limites [0, 700]
     public static boolean dansMap(int x, int y){
-        return (0<= x && x+20 <= 800 && 0<= y && y+20 <= 800);
+        return (0<= x && x+20 <= 700 && 0<= y && y+20 <= 700);
     }
 }
