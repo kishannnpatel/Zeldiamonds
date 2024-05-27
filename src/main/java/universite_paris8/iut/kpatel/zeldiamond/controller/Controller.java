@@ -14,12 +14,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Joueur;
+import universite_paris8.iut.kpatel.zeldiamond.vue.vueJoueur;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+public class Controller implements Initializable {
 
     @FXML
     private BorderPane borderPane;
@@ -30,10 +30,9 @@ public class HelloController implements Initializable {
     @FXML
     private TilePane TPMap;
 
-    @FXML
+
     private Map map;
 
-    @FXML
     private Joueur joueur;
 
     private Joueur enemie;
@@ -80,21 +79,19 @@ public class HelloController implements Initializable {
 
     public void spriteJoueur() {
 
-        //size du joueur 25 sur 25
-        Rectangle rec = new Rectangle(20, 20);
-        // color du joueur
-        rec.setFill(Color.STEELBLUE);
-        // Attribut un id unique au rectangle qui est basé sur l'ID du joueur.
-        rec.setId(String.valueOf(joueur.getId()));
-        // Ajout rectangle qui représente le joueur dans conteneur PaneMap.
-        this.PaneMap.getChildren().add(rec);
-          // Le joueur peut ce déplacer grace au touche { zqsd } du clavier.
         // Ajout d'un filtre d'événement pour écouter les touches pressées et agir en conséquence.
 
-        // translation X du rectangle avec la propriété X du joueur.
-        rec.translateXProperty().bind(joueur.Xproperty());
-        // translation Y du rectangle avec la propriété Y du joueur.
-        rec.translateYProperty().bind(joueur.Yproperty());
+        PaneMap.addEventFilter(KeyEvent.KEY_PRESSED , this::bouger );
+
+
+
+        vueJoueur vueJoueur = new vueJoueur(joueur.getId(), PaneMap);
+        vueJoueur.creeVue();
+        Pane pane = vueJoueur.getRec();
+
+        // Binding des propriétés de translation
+        joueur.translateXproperty().bind(pane.translateXProperty());
+        joueur.translateYproperty().bind(pane.translateYProperty());
     }
 
     /*----------------------SpriteAnimation------------------------------*/
@@ -108,8 +105,8 @@ public class HelloController implements Initializable {
         this.PaneMap.getChildren().add(rec); // Ajout du rectangle au panneau sur la carte
         // Lier les propriétés X et Y du rectangle aux propriétés X et Y de l'ennemi
         // permet au  rectangle de se déplace avec l'ennemi
-        rec.translateXProperty().bind(enemie.Xproperty());
-        rec.translateYProperty().bind(enemie.Yproperty());
+        rec.translateXProperty().bind(enemie.translateXproperty());
+        rec.translateYProperty().bind(enemie.translateYproperty());
 
     }
 
@@ -122,7 +119,6 @@ public class HelloController implements Initializable {
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);// L'animation se répétera indéfiniment
         KeyFrame keyFrame = new KeyFrame(
-
                 Duration.seconds(0.017),// Définir la durée de l'image
                 (ev -> {
 
@@ -131,13 +127,13 @@ public class HelloController implements Initializable {
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
                         //System.out.println("un tour");
-                        enemie.setX(enemie.getX() + 5);// Déplace ennemi de 5 pixels vers la droite
-                        enemie.setY(enemie.getY() + 5);// Déplace ennemi de 5 pixels vers le bas
+                        enemie.setTranslqteX(enemie.getTranslateX() + 5);// Déplace ennemi de 5 pixels vers la droite
+                        enemie.setTranslateY(enemie.getTranslateY() + 5);// Déplace ennemi de 5 pixels vers le bas
                     }
-
                     temps++;
                 })
         );
+
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);
     }
@@ -172,31 +168,31 @@ public class HelloController implements Initializable {
    @FXML
     private void bouger(KeyEvent event){
         if (event.getCode() == KeyCode.Q) {
-            int t = joueur.getX() - this.vitesse;
-            if (joueur.dansMap(t, joueur.getY())) {
-                if(colisionsMap(t, joueur.getY())==false) return;
-                joueur.setX(t);
+            int t = joueur.getTranslateX() - this.vitesse;
+            if (joueur.dansMap(t, joueur.getTranslateY())) {
+                if(colisionsMap(t, joueur.getTranslateY())==false) return;
+                joueur.setTranslqteX(t);
             }
         }
         if (event.getCode() == KeyCode.D){
-            int t = joueur.getX() +this.vitesse;
-            if(joueur.dansMap(t, joueur.getY())){
-                if(colisionsMap(t, joueur.getY())==false)return;
-                joueur.setX(t);
+            int t = joueur.getTranslateX() +this.vitesse;
+            if(joueur.dansMap(t, joueur.getTranslateY())){
+                if(colisionsMap(t, joueur.getTranslateY())==false)return;
+                joueur.setTranslqteX(t);
             }
         }
         if (event.getCode() == KeyCode.S){
-            int t = joueur.getY() +this.vitesse;
-            if(joueur.dansMap(joueur.getX(), t)){
-                if(colisionsMap(joueur.getX(), t)==false)return;
-                joueur.setY(t);
+            int t = joueur.getTranslateY() +this.vitesse;
+            if(joueur.dansMap(joueur.getTranslateX(), t)){
+                if(colisionsMap(joueur.getTranslateX(), t)==false)return;
+                joueur.setTranslateY(t);
             }
         }
         if (event.getCode() == KeyCode.Z){
-            int t = joueur.getY() -this.vitesse;
-            if(joueur.dansMap(joueur.getX(), t)){
-                if(colisionsMap(joueur.getX(), t)==false)return;
-                joueur.setY(t);
+            int t = joueur.getTranslateY() -this.vitesse;
+            if(joueur.dansMap(joueur.getTranslateX(), t)){
+                if(colisionsMap(joueur.getTranslateX(), t)==false)return;
+                joueur.setTranslateY(t);
             }
         }
     }
