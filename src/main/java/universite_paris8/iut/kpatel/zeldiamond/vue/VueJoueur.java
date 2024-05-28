@@ -4,24 +4,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
-import java.io.File;
-
-public class vueJoueur {
-
+public class VueJoueur {
+        private int[][] tab;
         private ImageView img;
         private Pane rec;
         private int id;
         private Pane paneMap;
 
-        public vueJoueur(int id, Pane paneMap) {
+        public VueJoueur(int id, Pane paneMap, int[][] tab) {
             this.paneMap = paneMap;
+            this.tab=tab;
             this.id = id;
         }
 
         public void creeVue() {
             this.img = new ImageView();
-            img.setImage(new Image("" +
-                    "file:src/main/resources/universite_paris8/iut/kpatel/" +
+            img.setImage(new Image("file:src/main/resources/" +
+                    "universite_paris8/iut/kpatel/" +
                     "zeldiamond/joueur/boy_down_1.png"));
             img.setFitHeight(35);
             img.setFitWidth(35);
@@ -43,5 +42,10 @@ public class vueJoueur {
         public Pane getRec() {
             return rec;
         }
+
+
+
+
+
 
 }

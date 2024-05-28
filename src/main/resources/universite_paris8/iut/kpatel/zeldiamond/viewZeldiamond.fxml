@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<Pane onKeyPressed="#bouger" fx:id="PaneMap" focusTraversable="true" style="-fx-pref-height: 700; -fx-pref-width: 700;" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller">
-        <TilePane fx:id="TPMap" alignment="CENTER" layoutY="-1.0" prefColumns="20" prefRows="20" style="-fx-pref-height: 700; -fx-pref-width: 700; -fx-background-color: black;" />
+<Pane fx:id="PaneMap" focusTraversable="true" onKeyPressed="#bouger" style="-fx-pref-height: 700; -fx-pref-width: 700;" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller">
+        <TilePane fx:id="TPMap" alignment="CENTER" layoutY="-1.0" prefColumns="20" prefRows="20" style="-fx-pref-height: 700; -fx-pref-width: 700; -fx-background-color: #64bb53;" />
 </Pane>
