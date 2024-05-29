@@ -20,6 +20,9 @@ import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
 
+import java.awt.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,6 +39,7 @@ public class Controller implements Initializable {
     private Joueur gameloop;
     private Timeline gameLoop;
     private int temps;
+    private Ennemi ennemi;
 
 
 
@@ -50,8 +54,8 @@ public class Controller implements Initializable {
         vmap.spriteMap();
         this.joueur = new Joueur(100);
         this.gameloop = new Joueur(10);
-
-
+        this.ennemi =new Ennemi(90);
+        vueEnemie();
         spriteJoueur();
         spriteAnimation();
         Animation();
@@ -69,6 +73,34 @@ public class Controller implements Initializable {
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
+
+    public void vueEnemie() {
+        Rectangle ennemiRect = new Rectangle(20, 20, Color.RED);
+
+        ennemi.setTranslateX(100);
+        ennemi.setTranslateY(100);
+
+        ennemiRect.translateXProperty().bind(ennemi.translateXProperty());
+        ennemiRect.translateYProperty().bind(ennemi.translateYProperty());
+
+        PaneMap.getChildren().add(ennemiRect);
+    }
+
+    private void startGameLoop() {
+        gameLoop = new Timeline();
+        temps = 0;
+        gameLoop.setCycleCount(Timeline.INDEFINITE);
+        KeyFrame keyFrame = new KeyFrame(
+                Duration.seconds(0.5), // Change direction every 0.5 seconds
+                ev -> {
+                    ennemi.deplacerAleatoirement();
+                }
+        );
+        gameLoop.getKeyFrames().add(keyFrame);
+        gameLoop.play();
+    }
+
+
 
 
 
@@ -123,7 +155,6 @@ public class Controller implements Initializable {
     @FXML
     public void bouger(KeyEvent event) {
 
-
         Map colisionsMap = new Map();
 
         int vitesse = 10;
@@ -157,6 +188,7 @@ public class Controller implements Initializable {
             }
         }
     }
+
 
 }
 
