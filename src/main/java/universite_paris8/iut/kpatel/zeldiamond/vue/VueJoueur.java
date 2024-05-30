@@ -19,17 +19,19 @@ public class VueJoueur {
 
         public void creeVue() {
             this.img = new ImageView();
+        // Définition de l'image pour l'ImageView
             img.setImage(new Image("file:src/main/resources/" +
                     "universite_paris8/iut/kpatel/" +
                     "zeldiamond/joueur/boy_down_1.png"));
             img.setFitHeight(35);
             img.setFitWidth(35);
+            // Définition de l'ID de l'ImageView pour identifier ce joueur
             this.img.setId(String.valueOf(id));
-
+            // Création d'un Pane pour contenir l'ImageView
             rec = new Pane();
-            rec.getChildren().add(img);
-            paneMap.getChildren().add(rec);
-
+            rec.getChildren().add(img);// Ajout de l'ImageView au Pane
+            paneMap.getChildren().add(rec);// Ajout du Pane au paneMap
+            // Affichage des coordonnées de l'image dans la console pour le débogage
             System.out.println(img.getX() );
             System.out.println(img.getY() );
 

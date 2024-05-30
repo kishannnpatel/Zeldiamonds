@@ -52,10 +52,9 @@ public class Controller implements Initializable {
         this.map = new Map();
         VueMap vmap= new VueMap(map.getTableau(), TPMap);
         vmap.spriteMap();
-        this.joueur = new Joueur(100);
-        this.gameloop = new Joueur(10);
-        this.ennemi =new Ennemi(90);
-        vueEnemie();
+        this.joueur = new Joueur(100 , 10);
+        this.gameloop = new Joueur(10  , 10);
+        this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
         spriteAnimation();
         Animation();
@@ -65,45 +64,15 @@ public class Controller implements Initializable {
 
     public void spriteJoueur() {
         PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bouger);
-
+        joueur.getVitesse();
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap, map.getTableau());
         vueJoueur.creeVue();
+
         Pane pane = vueJoueur.getRec();
 
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
-
-    public void vueEnemie() {
-        Rectangle ennemiRect = new Rectangle(20, 20, Color.RED);
-
-        ennemi.setTranslateX(100);
-        ennemi.setTranslateY(100);
-
-        ennemiRect.translateXProperty().bind(ennemi.translateXProperty());
-        ennemiRect.translateYProperty().bind(ennemi.translateYProperty());
-
-        PaneMap.getChildren().add(ennemiRect);
-    }
-
-    private void startGameLoop() {
-        gameLoop = new Timeline();
-        temps = 0;
-        gameLoop.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame keyFrame = new KeyFrame(
-                Duration.seconds(0.5), // Change direction every 0.5 seconds
-                ev -> {
-                    ennemi.deplacerAleatoirement();
-                }
-        );
-        gameLoop.getKeyFrames().add(keyFrame);
-        gameLoop.play();
-    }
-
-
-
-
-
 
 
 
@@ -123,9 +92,7 @@ public class Controller implements Initializable {
         rec.translateYProperty().bind(gameloop.translateYProperty());
     }
 
-
     /*----------------------Animation-------------------------------*/
-
     // gameLoop
     private void Animation() {
 
@@ -154,35 +121,33 @@ public class Controller implements Initializable {
 
     @FXML
     public void bouger(KeyEvent event) {
-
         Map colisionsMap = new Map();
-
         int vitesse = 10;
 
         if (event.getCode() == KeyCode.Q) {
-            int t = joueur.getTranslateX() - vitesse;
-            if (Joueur.dansMap(t, joueur.getTranslateY())) {
-                if (!colisionsMap.colisionsMap(t, joueur.getTranslateY())) return;
-                joueur.setTranslateX(t);
-            }
+            joueur.depGauche();
         }
+
         if (event.getCode() == KeyCode.D) {
-            int t = joueur.getTranslateX() + vitesse;
-            if (Joueur.dansMap(t, joueur.getTranslateY())) {
+             int t = joueur.getTranslateX() + vitesse;
+            if (joueur.dansMap(t, joueur.getTranslateY())) {
                 if (!colisionsMap.colisionsMap(t, joueur.getTranslateY())) return;
                 joueur.setTranslateX(t);
             }
+
         }
+
         if (event.getCode() == KeyCode.S) {
             int t = joueur.getTranslateY() + vitesse;
-            if (Joueur.dansMap(joueur.getTranslateX(), t)) {
+            if (joueur.dansMap(joueur.getTranslateX(), t)) {
                 if (!colisionsMap.colisionsMap(joueur.getTranslateX(), t)) return;
                 joueur.setTranslateY(t);
             }
         }
+
         if (event.getCode() == KeyCode.Z) {
-            int t = joueur.getTranslateY() - vitesse;
-            if (Joueur.dansMap(joueur.getTranslateX(), t)) {
+             int t = joueur.getTranslateY() - vitesse;
+            if (joueur.dansMap(joueur.getTranslateX(), t)) {
                 if (!colisionsMap.colisionsMap(joueur.getTranslateX(), t)) return;
                 joueur.setTranslateY(t);
             }

@@ -32,6 +32,14 @@ public class VueMap {
                             "universite_paris8/iut/kpatel/" +
                             "zeldiamond/tilemap/fontaine.png");
                     r.setFill(new ImagePattern(img));
+
+
+                }else if(map[i][j] == 3) {
+                    r.setId("mur");
+                    Image img = new Image("file:src/main/resources/" +
+                            "universite_paris8/iut/kpatel/" +
+                            "zeldiamond/tilemap/maisond.png");
+                    r.setFill(new ImagePattern(img));
                 } else {
                     Image img = new Image("file:src/main/resources/" +
                             "universite_paris8/iut/kpatel/" +
