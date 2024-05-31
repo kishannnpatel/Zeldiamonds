@@ -15,10 +15,9 @@ import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
-
-import universite_paris8.iut.kpatel.zeldiamond.vue.vueEnnemi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +52,7 @@ public class Controller implements Initializable {
         this.gameloop = new Joueur(10  , 20);
         this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
+        spriteEnnemi();
         spriteAnimation();
         Animation();
         gameLoop.play();
@@ -60,7 +60,7 @@ public class Controller implements Initializable {
 
 
     public void spriteJoueur() {
-        PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bouger);
+        PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap);
         vueJoueur.creeVue();
 
@@ -71,7 +71,7 @@ public class Controller implements Initializable {
     }
 
     public void spriteEnnemi(){
-        vueEnnemi vueennemi = new vueEnnemi(ennemi.getId(), PaneMap);
+        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), PaneMap);
         vueennemi.creeVue2();
 
         Pane pane = vueennemi.getRec();
@@ -123,7 +123,7 @@ public class Controller implements Initializable {
         gameLoop.getKeyFrames().add(keyFrame);
     }
 
-    @FXML public void bouger(KeyEvent event) {
+    @FXML public void bougerJoueur(KeyEvent event) {
         if (event.getCode() == KeyCode.Q) {
             joueur.depGauche();
         }
@@ -136,5 +136,8 @@ public class Controller implements Initializable {
         if (event.getCode() == KeyCode.Z) {
             joueur.depHaut();
         }
+    }
+    @FXML public void bougerEnnemi(){
+
     }
 }
