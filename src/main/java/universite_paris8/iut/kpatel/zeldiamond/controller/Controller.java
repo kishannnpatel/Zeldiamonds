@@ -9,6 +9,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
@@ -25,42 +27,51 @@ public class Controller implements Initializable {
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Pane paneMap;
+    private Pane PaneMap;
     @FXML
-    private TilePane tilePaneMap;
+    private TilePane TPMap;
     private Map map;
     private Joueur joueur;
+    private Joueur gameloop;
     private Timeline gameLoop;
     private int temps;
     private Ennemi ennemi;
+
+
+
+
 
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.map = new Map();
-        VueMap vmap= new VueMap(map.getTableau(), tilePaneMap);
+        VueMap vmap= new VueMap(map.getTableau(), TPMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100 , 10);
-
+        this.gameloop = new Joueur(10  , 20);
         this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
         spriteEnnemi();
+        spriteAnimation();
         Animation();
         gameLoop.play();
     }
 
+
     public void spriteJoueur() {
-        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
-        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
+        PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
+        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap);
         vueJoueur.creeVue();
+
         Pane pane = vueJoueur.getRec();
+
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
 
     public void spriteEnnemi(){
-        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
+        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), PaneMap);
         vueennemi.creeVue2();
 
         Pane pane = vueennemi.getRec();
@@ -69,6 +80,23 @@ public class Controller implements Initializable {
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
 
+
+
+    /*----------------------SpriteAnimation------------------------------*/
+
+    private void spriteAnimation() {
+        // Crée un nouveau rectangle avec sa taille
+        Rectangle rec = new Rectangle(20, 20); // Taille de l'ennemi 20x20
+        rec.setFill(Color.GREEN); // Couleur de l'ennemi
+
+        // Ajout du rectangle au panneau sur la carte
+        this.PaneMap.getChildren().add(rec);
+
+        // Lier les propriétés X et Y du rectangle aux propriétés X et Y de l'ennemi
+        // permet au rectangle de se déplacer avec l'ennemi
+        rec.translateXProperty().bind(gameloop.translateXProperty());
+        rec.translateYProperty().bind(gameloop.translateYProperty());
+    }
 
     /*----------------------Animation-------------------------------*/
     // gameLoop
@@ -79,13 +107,14 @@ public class Controller implements Initializable {
         KeyFrame keyFrame = new KeyFrame(
                 Duration.seconds(0.017),// Définir la durée de l'image
                 (ev -> {
+
                     if (temps == 10000) {
                         System.out.println("fin");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
                         //System.out.println("un tour");
-                        ennemi.setTranslateX(ennemi.getTranslateX() + 5);// Déplace ennemi de 5 pixels vers la droite
-                        ennemi.setTranslateY(ennemi.getTranslateY() + 5);// Déplace ennemi de 5 pixels vers le bas
+                        gameloop.setTranslateX(gameloop.getTranslateX() + 5);// Déplace ennemi de 5 pixels vers la droite
+                        gameloop.setTranslateY(gameloop.getTranslateY() + 5);// Déplace ennemi de 5 pixels vers le bas
                     }
                     temps++;
                 })
