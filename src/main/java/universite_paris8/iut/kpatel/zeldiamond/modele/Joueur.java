@@ -14,6 +14,30 @@ public class Joueur  extends Acteur{
         }
     }
 
+    public void depDroite(){
+        int t = getTranslateX() + getVitesse();
+        if (dansMap(t, getTranslateY())) {
+            if (!getMap().colisionsMap(t,getTranslateY())) return;
+            setTranslateX(t);
+        }
+    }
+
+    public void depBas(){
+        int t = getTranslateY() + getVitesse();
+        if (dansMap(getTranslateX(), t)) {
+            if (!getMap().colisionsMap(getTranslateX(), t)) return;
+            setTranslateY(t);
+        }
+    }
+
+    public void depHaut(){
+        int t = getTranslateY() - getVitesse();
+        if (dansMap(getTranslateX(), t)) {
+            if (!getMap().colisionsMap(getTranslateX(), t)) return;
+            setTranslateY(t);
+        }
+    }
+
 
 
 }

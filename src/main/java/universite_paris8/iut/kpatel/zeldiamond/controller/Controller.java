@@ -53,7 +53,7 @@ public class Controller implements Initializable {
         VueMap vmap= new VueMap(map.getTableau(), TPMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100 , 10);
-        this.gameloop = new Joueur(10  , 10);
+        this.gameloop = new Joueur(10  , 20);
         this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
         spriteAnimation();
@@ -64,7 +64,6 @@ public class Controller implements Initializable {
 
     public void spriteJoueur() {
         PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bouger);
-        joueur.getVitesse();
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap, map.getTableau());
         vueJoueur.creeVue();
 
@@ -119,79 +118,18 @@ public class Controller implements Initializable {
         gameLoop.getKeyFrames().add(keyFrame);
     }
 
-    @FXML
-    public void bouger(KeyEvent event) {
-        Map colisionsMap = new Map();
-        int vitesse = 10;
-
+    @FXML public void bouger(KeyEvent event) {
         if (event.getCode() == KeyCode.Q) {
             joueur.depGauche();
         }
-
-        if (event.getCode() == KeyCode.D) {
-             int t = joueur.getTranslateX() + vitesse;
-            if (joueur.dansMap(t, joueur.getTranslateY())) {
-                if (!colisionsMap.colisionsMap(t, joueur.getTranslateY())) return;
-                joueur.setTranslateX(t);
-            }
-
+        if (event.getCode() == KeyCode.D){
+            joueur.depDroite();
         }
-
         if (event.getCode() == KeyCode.S) {
-            int t = joueur.getTranslateY() + vitesse;
-            if (joueur.dansMap(joueur.getTranslateX(), t)) {
-                if (!colisionsMap.colisionsMap(joueur.getTranslateX(), t)) return;
-                joueur.setTranslateY(t);
-            }
+            joueur.depBas();
         }
-
         if (event.getCode() == KeyCode.Z) {
-             int t = joueur.getTranslateY() - vitesse;
-            if (joueur.dansMap(joueur.getTranslateX(), t)) {
-                if (!colisionsMap.colisionsMap(joueur.getTranslateX(), t)) return;
-                joueur.setTranslateY(t);
-            }
+            joueur.depHaut();
         }
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
