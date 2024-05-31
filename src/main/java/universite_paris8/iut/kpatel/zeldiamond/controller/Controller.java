@@ -1,6 +1,5 @@
 package universite_paris8.iut.kpatel.zeldiamond.controller;
 
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -13,16 +12,14 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Ennemi;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Joueur;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
+import universite_paris8.iut.kpatel.zeldiamond.vue.vueEnnemi;
 
-import java.awt.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -64,13 +61,23 @@ public class Controller implements Initializable {
 
     public void spriteJoueur() {
         PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bouger);
-        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap, map.getTableau());
+        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap);
         vueJoueur.creeVue();
 
         Pane pane = vueJoueur.getRec();
 
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
+    }
+
+    public void spriteEnnemi(){
+        vueEnnemi vueennemi = new vueEnnemi(ennemi.getId(), PaneMap);
+        vueennemi.creeVue2();
+
+        Pane pane = vueennemi.getRec();
+
+        pane.translateXProperty().bind(ennemi.translateXProperty());
+        pane.translateYProperty().bind(ennemi.translateYProperty());
     }
 
 
@@ -94,7 +101,6 @@ public class Controller implements Initializable {
     /*----------------------Animation-------------------------------*/
     // gameLoop
     private void Animation() {
-
         gameLoop = new Timeline();
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);// L'animation se répétera indéfiniment
@@ -113,7 +119,6 @@ public class Controller implements Initializable {
                     temps++;
                 })
         );
-
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);
     }

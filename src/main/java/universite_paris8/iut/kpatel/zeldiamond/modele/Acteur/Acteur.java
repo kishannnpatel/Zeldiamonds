@@ -1,8 +1,9 @@
-package universite_paris8.iut.kpatel.zeldiamond.modele;
+package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
 
 public abstract class Acteur {
     protected int pv; // Initialisation des points de vie avec l'argument du constructeur

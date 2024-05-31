@@ -1,6 +1,6 @@
-package universite_paris8.iut.kpatel.zeldiamond.modele;
+package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
-public class Joueur  extends Acteur{
+public class Joueur  extends Acteur {
 
     public Joueur(int pv , int vitesse) {
         super(pv , vitesse);

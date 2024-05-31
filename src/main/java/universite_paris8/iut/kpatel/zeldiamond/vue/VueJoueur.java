@@ -5,15 +5,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class VueJoueur {
-        private int[][] tab;
         private ImageView img;
         private Pane rec;
         private int id;
         private Pane paneMap;
 
-        public VueJoueur(int id, Pane paneMap, int[][] tab) {
+        public VueJoueur(int id, Pane paneMap ) {
             this.paneMap = paneMap;
-            this.tab=tab;
             this.id = id;
         }
 
