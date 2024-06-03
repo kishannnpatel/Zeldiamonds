@@ -4,10 +4,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane onKeyPressed="#bougerJoueur" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller"  stylesheets="@hello-view.css">
+<BorderPane onKeyPressed="#bouger" style="-fx-pref-height: 700; -fx-pref-width: 1400;
+            -fx-background-color: Grey;" stylesheets="@hello-view.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller">
    <center>
-      <Pane fx:id="paneMap" focusTraversable="true" style="-fx-pref-height: 700; -fx-pref-width: 700;  -fx-background-color: blue;">
-              <TilePane fx:id="tilePaneMap" alignment="CENTER" layoutY="-1.0" prefColumns="20" prefRows="20" style="-fx-pref-height: 700; -fx-pref-width: 700; -fx-background-color: green;" />
+      <Pane fx:id="PaneMap" focusTraversable="true" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            style="-fx-pref-height: 600; -fx-pref-width: 1200; -fx-background-color: blue;"
+            BorderPane.alignment="CENTER">
+              <TilePane fx:id="TPMap" alignment="CENTER" prefColumns="20"
+                        prefRows="40" style="-fx-pref-height: 600; -fx-pref-width: 1200;
+                        -fx-background-color: green;" />
       </Pane>
    </center>
 </BorderPane>
