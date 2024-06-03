@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane onKeyPressed="#bouger" style="-fx-pref-height: 700; -fx-pref-width: 1400;
-            -fx-background-color: Grey;" stylesheets="@hello-view.css"
+<BorderPane onKeyPressed="#bougerJoueur" style="-fx-pref-height: 800; -fx-pref-width: 1600; -fx-background-color: Grey;" stylesheets="@hello-view.css"
             xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller">
    <center>
@@ -14,7 +13,7 @@
             style="-fx-pref-height: 600; -fx-pref-width: 1200; -fx-background-color: blue;"
             BorderPane.alignment="CENTER">
               <TilePane fx:id="TPMap" alignment="CENTER" prefColumns="20"
-                        prefRows="40" style="-fx-pref-height: 600; -fx-pref-width: 1200;
+                        prefRows="30" style="-fx-pref-height: 600; -fx-pref-width: 1200;
                         -fx-background-color: green;" />
       </Pane>
    </center>

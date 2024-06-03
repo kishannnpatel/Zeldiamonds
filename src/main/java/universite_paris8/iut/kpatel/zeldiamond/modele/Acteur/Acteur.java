@@ -73,7 +73,7 @@ public abstract class Acteur {
     }
 
     public  boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 1000 && 0 <= y && y + 20 <= 1000);
+        return (0 <= x && x + 20 <= 1200 && 0 <= y && y + 20 <= 600);
     }
 
 }
