@@ -39,13 +39,11 @@ public class VueMap {
                             "universite_paris8/iut/kpatel/" +
                             "zeldiamond/tilemap/maisond.png");
                     r.setFill(new ImagePattern(img));
-                } else if (map[i][j] == 0){
+                } else{
                     Image img = new Image("file:src/main/resources/" +
                             "universite_paris8/iut/kpatel/" +
                             "zeldiamond/tilemap/herbe.png");
                     r.setFill(new ImagePattern(img));//si dans map numero != de 1 et 2, alors color BlueViolet.
-                }else {
-                    r.setId("mur");
                 }
                 this.tilePaneMap.getChildren().add(r);// Ajout  rectangle au conteneur TPMap pour l'afficher.
             }
