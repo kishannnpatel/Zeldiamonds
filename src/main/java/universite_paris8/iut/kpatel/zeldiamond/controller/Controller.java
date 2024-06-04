@@ -15,10 +15,11 @@ import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
-import universite_paris8.iut.kpatel.zeldiamond.vue.vueEnnemi;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
