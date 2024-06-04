@@ -7,11 +7,11 @@ import javafx.scene.shape.Rectangle;
 
 public class VueMap {
     private  int[][] map ;
-    private TilePane  tpMap;
+    private TilePane tilePaneMap;
 
-    public VueMap(int[][] map, TilePane tpMap){
+    public VueMap(int[][] map, TilePane tilePane){
         this.map=map;
-        this.tpMap=tpMap;
+        this.tilePaneMap =tilePane;
 
     }
 
@@ -46,7 +46,7 @@ public class VueMap {
                             "zeldiamond/tilemap/herbe.png");
                     r.setFill(new ImagePattern(img));//si dans map numero != de 1 et 2, alors color BlueViolet.
                 }
-                this.tpMap.getChildren().add(r);// Ajout  rectangle au conteneur TPMap pour l'afficher.
+                this.tilePaneMap.getChildren().add(r);// Ajout  rectangle au conteneur TPMap pour l'afficher.
             }
         }
     }
