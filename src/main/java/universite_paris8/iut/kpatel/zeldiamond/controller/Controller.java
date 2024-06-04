@@ -50,7 +50,6 @@ public class Controller implements Initializable {
         this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
         spriteEnnemi();
-
         Animation();
         gameLoop.play();
     }
@@ -60,7 +59,9 @@ public class Controller implements Initializable {
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
+
         Pane pane = vueJoueur.getRec();
+
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
@@ -68,10 +69,13 @@ public class Controller implements Initializable {
     public void spriteEnnemi(){
         VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
         vueennemi.creeVue2();
+
         Pane pane = vueennemi.getRec();
+
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
+
 
     /*----------------------Animation-------------------------------*/
     // gameLoop
