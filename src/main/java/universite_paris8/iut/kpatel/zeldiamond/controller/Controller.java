@@ -108,7 +108,4 @@ public class Controller implements Initializable {
             joueur.depHaut();
         }
     }
-    @FXML public void bougerEnnemi(){
-
-    }
 }
