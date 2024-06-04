@@ -9,8 +9,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
@@ -18,8 +16,6 @@ import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
-
-import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,12 +25,11 @@ public class Controller implements Initializable {
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Pane PaneMap;
+    private Pane paneMap;
     @FXML
-    private TilePane TPMap;
+    private TilePane tilePaneMap;
     private Map map;
     private Joueur joueur;
-
     private Timeline gameLoop;
     private int temps;
     private Ennemi ennemi;
@@ -48,7 +43,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.map = new Map();
-        VueMap vmap= new VueMap(map.getTableau(), TPMap);
+        VueMap vmap= new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100 , 10);
 
@@ -62,22 +57,18 @@ public class Controller implements Initializable {
 
 
     public void spriteJoueur() {
-        PaneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
-        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), PaneMap);
+        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
+        VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
-
         Pane pane = vueJoueur.getRec();
-
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
 
     public void spriteEnnemi(){
-        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), PaneMap);
+        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
         vueennemi.creeVue2();
-
         Pane pane = vueennemi.getRec();
-
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
