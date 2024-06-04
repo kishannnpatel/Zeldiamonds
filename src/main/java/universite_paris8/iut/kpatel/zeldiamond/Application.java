@@ -5,12 +5,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
+
 public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("viewZeldiamond.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1800, 1800);
+        Scene scene = new Scene(fxmlLoader.load(), 1500, 900);
         Pane root = (Pane) scene.getRoot();
         root.requestFocus();
         stage.setTitle("Zeldiamond");
