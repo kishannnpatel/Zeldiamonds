@@ -12,7 +12,7 @@
             maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             style="-fx-pref-height: 600; -fx-pref-width: 1200; -fx-background-color: blue;"
             BorderPane.alignment="CENTER">
-              <TilePane fx:id="TPMap" alignment="CENTER" prefColumns="20"
+              <TilePane fx:id="tilePaneMap" alignment="CENTER" prefColumns="20"
                         prefRows="30" style="-fx-pref-height: 600; -fx-pref-width: 1200;
                         -fx-background-color: green;" />
       </Pane>
