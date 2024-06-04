@@ -29,7 +29,7 @@ public class Controller implements Initializable {
     @FXML
     private Pane PaneMap;
     @FXML
-    private TilePane TPMap;
+    private TilePane tilePaneMap;
     private Map map;
     private Joueur joueur;
     private Joueur gameloop;
@@ -42,7 +42,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.map = new Map();
-        VueMap vmap= new VueMap(map.getTableau(), TPMap);
+        VueMap vmap= new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100 , 10);
         this.gameloop = new Joueur(10  , 20);
