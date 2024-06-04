@@ -30,8 +30,8 @@ public class VueJoueur {
             rec.getChildren().add(img);// Ajout de l'ImageView au Pane
             paneMap.getChildren().add(rec);// Ajout du Pane au paneMap
             // Affichage des coordonnées de l'image dans la console pour le débogage
-            System.out.println(img.getX() );
-            System.out.println(img.getY() );
+            System.out.println(img.getX());
+            System.out.println(img.getY());
 
         }
 

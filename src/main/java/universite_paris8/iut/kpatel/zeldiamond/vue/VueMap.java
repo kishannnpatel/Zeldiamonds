@@ -9,9 +9,9 @@ public class VueMap {
     private  int[][] map ;
     private TilePane tilePaneMap;
 
-    public VueMap(int[][] map, TilePane tilePane){
+    public VueMap(int[][] map, TilePane tpMap){
         this.map=map;
-        this.tilePaneMap =tilePane;
+        this.tilePaneMap =tpMap;
 
     }
 
@@ -33,20 +33,19 @@ public class VueMap {
                             "zeldiamond/tilemap/fontaine.png");
                     r.setFill(new ImagePattern(img));
 
-
                 }else if(map[i][j] == 3) {
                     r.setId("mur");
                     Image img = new Image("file:src/main/resources/" +
                             "universite_paris8/iut/kpatel/" +
                             "zeldiamond/tilemap/maisond.png");
                     r.setFill(new ImagePattern(img));
-                } else {
+                } else{
                     Image img = new Image("file:src/main/resources/" +
                             "universite_paris8/iut/kpatel/" +
                             "zeldiamond/tilemap/herbe.png");
-                    r.setFill(new ImagePattern(img));//si dans map numero != de 1 et 2, alors color BlueViolet.
+                    r.setFill(new ImagePattern(img));
                 }
-                this.tilePaneMap.getChildren().add(r);// Ajout  rectangle au conteneur TPMap pour l'afficher.
+                this.tilePaneMap.getChildren().add(r);
             }
         }
     }

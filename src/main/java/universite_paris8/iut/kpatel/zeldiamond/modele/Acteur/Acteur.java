@@ -13,11 +13,10 @@ public abstract class Acteur {
     protected int id;
     private Map map;
 
-
     public Acteur(int pv , int vitesse ) {
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
-        this.translateX = new SimpleIntegerProperty(0);// Initialisation de translateX à 0
-        this.translateY = new SimpleIntegerProperty(0);// Initialisation de translateY à 0
+        this.translateX = new SimpleIntegerProperty(300);// Initialisation de translateX à 0
+        this.translateY = new SimpleIntegerProperty(300);// Initialisation de translateY à 0
         this.id = 0; // Initialisation de l'id à 0
         this.map = new Map();// Création d'une nouvelle instance de Map
         this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeu
@@ -36,8 +35,6 @@ public abstract class Acteur {
     public int getVitesse() {
         return vitesse;
     }
-
-
 
     public int getTranslateX() {
         return this.translateX.get();
@@ -76,42 +73,8 @@ public abstract class Acteur {
     }
 
     public  boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 700 && 0 <= y && y + 20 <= 700);
+        return (0 <= x && x + 20 <= 1200 && 0 <= y && y + 20 <= 600);
     }
-
-   /* public void depGauche(){
-        int t = getTranslateX() - vitesse;
-        if (Joueur.dansMap(t,getTranslateY())) {
-            if (!map.colisionsMap(t, getTranslateY())) return;
-            setTranslateX(t);
-        }
-    }
-
-    public void depDroite(){
-        int t = getTranslateX() + vitesse;
-        if (Joueur.dansMap(t, getTranslateY())) {
-            if (!map.colisionsMap(t, getTranslateY())) return;
-            setTranslateX(t);
-        }
-    }
-
-    public void depBas(){
-        int t = getTranslateY() + vitesse;
-        if (Joueur.dansMap(getTranslateX(), t)) {
-            if (!map.colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }
-
-    public void depHaut(){
-        int t = getTranslateY() - vitesse;
-        if (Joueur.dansMap(getTranslateX(), t)) {
-            if (!map.colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }*/
-
-
 
 }
 

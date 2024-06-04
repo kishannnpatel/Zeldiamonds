@@ -1,5 +1,10 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.IOException;
+
 public class Joueur  extends Acteur {
 
     public Joueur(int pv , int vitesse) {

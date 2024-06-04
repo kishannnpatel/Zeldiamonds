@@ -34,10 +34,6 @@ public class Controller implements Initializable {
     private int temps;
     private Ennemi ennemi;
 
-
-
-
-
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
     @Override
@@ -54,14 +50,11 @@ public class Controller implements Initializable {
         gameLoop.play();
     }
 
-
     public void spriteJoueur() {
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
-
         Pane pane = vueJoueur.getRec();
-
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
@@ -86,7 +79,6 @@ public class Controller implements Initializable {
         KeyFrame keyFrame = new KeyFrame(
                 Duration.seconds(0.017),// Définir la durée de l'image
                 (ev -> {
-
                     if (temps == 10000) {
                         System.out.println("fin");
                         gameLoop.stop();// Arrêter l'animation
