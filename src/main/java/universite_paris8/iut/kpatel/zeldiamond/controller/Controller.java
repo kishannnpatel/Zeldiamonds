@@ -1,5 +1,6 @@
 package universite_paris8.iut.kpatel.zeldiamond.controller;
 
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -17,10 +18,13 @@ import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class Controller implements Initializable {
+
 
     @FXML
     private BorderPane borderPane;
@@ -34,7 +38,17 @@ public class Controller implements Initializable {
     private int temps;
     private Ennemi ennemi;
 
+
+
+
+
+
+
+
+
+
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
+
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
@@ -43,12 +57,18 @@ public class Controller implements Initializable {
         vmap.spriteMap();
         this.joueur = new Joueur(100 , 10);
 
+
         this.ennemi = new Ennemi(90 , 10);
         spriteJoueur();
         spriteEnnemi();
+
+
         Animation();
         gameLoop.play();
     }
+
+
+
 
     public void spriteJoueur() {
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
@@ -59,12 +79,11 @@ public class Controller implements Initializable {
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
 
+
     public void spriteEnnemi(){
         VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
         vueennemi.creeVue2();
-
         Pane pane = vueennemi.getRec();
-
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
@@ -79,6 +98,8 @@ public class Controller implements Initializable {
         KeyFrame keyFrame = new KeyFrame(
                 Duration.seconds(0.017),// Définir la durée de l'image
                 (ev -> {
+
+
                     if (temps == 10000) {
                         System.out.println("fin");
                         gameLoop.stop();// Arrêter l'animation
@@ -93,6 +114,7 @@ public class Controller implements Initializable {
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);
     }
+
 
     @FXML public void bougerJoueur(KeyEvent event) {
         if (event.getCode() == KeyCode.Q) {
@@ -110,5 +132,7 @@ public class Controller implements Initializable {
     }
     @FXML public void bougerEnnemi(){
 
+
     }
 }
+

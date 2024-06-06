@@ -1,9 +1,12 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
 
+
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+
 
 public abstract class Acteur {
     protected int pv; // Initialisation des points de vie avec l'argument du constructeur
@@ -13,69 +16,81 @@ public abstract class Acteur {
     protected int id;
     private Map map;
 
-    public Acteur(int pv , int vitesse ) {
+
+    public Acteur(int pv, int vitesse) {
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
-        this.translateX = new SimpleIntegerProperty(300);// Initialisation de translateX à 0
-        this.translateY = new SimpleIntegerProperty(300);// Initialisation de translateY à 0
+        this.translateX = new SimpleIntegerProperty(0);// Initialisation de translateX à 0
+        this.translateY = new SimpleIntegerProperty(0);// Initialisation de translateY à 0
         this.id = 0; // Initialisation de l'id à 0
         this.map = new Map();// Création d'une nouvelle instance de Map
         this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeu
     }
 
+
     // ----------------les pV --------------
+
 
     public void setPv(int pv) {
         this.pv = pv;
     }
 
+
     public int getPv() {
         return pv;
     }
+
 
     public int getVitesse() {
         return vitesse;
     }
 
+
     public int getTranslateX() {
         return this.translateX.get();
     }
+
 
     public IntegerProperty translateXProperty() {
         return this.translateX;
     }
 
+
     public void setTranslateX(int x) {
         this.translateX.set(x);
     }
+
 
     public int getTranslateY() {
         return this.translateY.get();
     }
 
+
     public IntegerProperty translateYProperty() {
         return this.translateY;
     }
+
 
     public void setTranslateY(int y) {
         this.translateY.set(y);
     }
 
+
     public int getId() {
         return id;
     }
+
 
     public void setMap(Map map) {
         this.map = map;
     }
 
+
     public Map getMap() {
         return map;
     }
 
-    public  boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 1200 && 0 <= y && y + 20 <= 600);
+
+    public boolean dansMap(int x, int y) {
+        return (0 <= x && x + 20 <= 700 && 0 <= y && y + 20 <= 700);
     }
-
 }
-
-
