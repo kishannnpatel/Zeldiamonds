@@ -76,4 +76,38 @@ public abstract class Acteur {
     public boolean dansMap(int x, int y) {
         return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 790);
     }
+    public void depGauche(){
+        int t = getTranslateX() - getVitesse();
+        if (dansMap(t, getTranslateY())) {
+            if (!getMap().colisionsMap(t, getTranslateY())) return;
+            setTranslateX(t);
+        }
+    }
+
+
+    public void depDroite(){
+        int t = getTranslateX() + getVitesse();
+        if (dansMap(t, getTranslateY())) {
+            if (!getMap().colisionsMap(t,getTranslateY())) return;
+            setTranslateX(t);
+        }
+    }
+
+
+    public void depBas(){
+        int t = getTranslateY() + getVitesse();
+        if (dansMap(getTranslateX(), t)) {
+            if (!getMap().colisionsMap(getTranslateX(), t)) return;
+            setTranslateY(t);
+        }
+    }
+
+
+    public void depHaut(){
+        int t = getTranslateY() - getVitesse();
+        if (dansMap(getTranslateX(), t)) {
+            if (!getMap().colisionsMap(getTranslateX(), t)) return;
+            setTranslateY(t);
+        }
+    }
 }

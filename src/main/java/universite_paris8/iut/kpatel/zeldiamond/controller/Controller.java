@@ -18,8 +18,8 @@ import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
-
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
@@ -53,21 +53,20 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.map = new Map();
-        VueMap vmap= new VueMap(map.getTableau(), tilePaneMap);
+        VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
-        this.joueur = new Joueur(100 , 10);
+        this.joueur = new Joueur(100, 10);
 
 
-        this.ennemi = new Ennemi(90 , 10);
+        this.ennemi = new Ennemi(90, 10);
         spriteJoueur();
         spriteEnnemi();
 
 
         Animation();
         gameLoop.play();
+
     }
-
-
 
 
     public void spriteJoueur() {
@@ -80,7 +79,7 @@ public class Controller implements Initializable {
     }
 
 
-    public void spriteEnnemi(){
+    public void spriteEnnemi() {
         VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
         vueennemi.creeVue2();
         Pane pane = vueennemi.getRec();
@@ -90,37 +89,36 @@ public class Controller implements Initializable {
 
 
     /*----------------------Animation-------------------------------*/
-    // gameLoop
+    //gameLoop
     private void Animation() {
         gameLoop = new Timeline();
         temps = 0;
         gameLoop.setCycleCount(Timeline.INDEFINITE);// L'animation se répétera indéfiniment
+        System.out.println("début loop");
         KeyFrame keyFrame = new KeyFrame(
                 Duration.seconds(0.017),// Définir la durée de l'image
-                (ev -> {
-
-
+                ev -> {
                     if (temps == 10000) {
                         System.out.println("fin");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
-                        //System.out.println("un tour");
-                        ennemi.setTranslateX(ennemi.getTranslateX() + 5);// Déplace ennemi de 5 pixels vers la droite
-                        ennemi.setTranslateY(ennemi.getTranslateY() + 5);// Déplace ennemi de 5 pixels vers le bas
+                        System.out.println("un tour");
+                        bougerEnnemi();
                     }
                     temps++;
-                })
+                }
         );
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);
     }
 
 
-    @FXML public void bougerJoueur(KeyEvent event) {
+    @FXML
+    public void bougerJoueur(KeyEvent event) {
         if (event.getCode() == KeyCode.Q) {
             joueur.depGauche();
         }
-        if (event.getCode() == KeyCode.D){
+        if (event.getCode() == KeyCode.D) {
             joueur.depDroite();
         }
         if (event.getCode() == KeyCode.S) {
@@ -130,9 +128,30 @@ public class Controller implements Initializable {
             joueur.depHaut();
         }
     }
-    @FXML public void bougerEnnemi(){
+
+    @FXML
+    public void bougerEnnemi() {
+
+        Random random = new Random();
+        int direction = random.nextInt(4) + 1; // Génère un nombre aléatoire entre 1 et 4
 
 
+            switch (direction) {
+                case 1:
+                    ennemi.depGauche();
+                    break;
+                case 2:
+                    ennemi.depDroite();
+                    break;
+                case 3:
+                    ennemi.depHaut();
+                    break;
+                case 4:
+                    ennemi.depBas();
+                    break;
+
+            }
+        }
     }
-}
+
 
