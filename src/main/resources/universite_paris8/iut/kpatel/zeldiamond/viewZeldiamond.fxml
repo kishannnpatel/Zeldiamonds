@@ -6,8 +6,8 @@
 
 <BorderPane onKeyPressed="#bougerJoueur" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="universite_paris8.iut.kpatel.zeldiamond.controller.Controller"  stylesheets="@hello-view.css">
     <center>
-        <Pane fx:id="paneMap" focusTraversable="true" style="-fx-pref-height: 700; -fx-pref-width: 700;">
-            <TilePane fx:id="tilePaneMap" alignment="CENTER" layoutY="-1.0" prefColumns="20" prefRows="20" style="-fx-pref-height: 700; -fx-pref-width: 700; -fx-background-color: green;" />
+        <Pane fx:id="paneMap" focusTraversable="true" style="-fx-pref-height: 875; -fx-pref-width: 1050;">
+            <TilePane fx:id="tilePaneMap" alignment="CENTER" layoutY="-1.0" prefColumns="20" prefRows="20" style="-fx-pref-height: 875; -fx-pref-width: 1050; -fx-background-color: #63BA53;" />
         </Pane>
     </center>
 </BorderPane>

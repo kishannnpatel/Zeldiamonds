@@ -1,8 +1,5 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
-
-
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
@@ -26,71 +23,57 @@ public abstract class Acteur {
         this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeu
     }
 
-
     // ----------------les pV --------------
-
 
     public void setPv(int pv) {
         this.pv = pv;
     }
 
-
     public int getPv() {
         return pv;
     }
-
 
     public int getVitesse() {
         return vitesse;
     }
 
-
     public int getTranslateX() {
         return this.translateX.get();
     }
-
 
     public IntegerProperty translateXProperty() {
         return this.translateX;
     }
 
-
     public void setTranslateX(int x) {
         this.translateX.set(x);
     }
-
 
     public int getTranslateY() {
         return this.translateY.get();
     }
 
-
     public IntegerProperty translateYProperty() {
         return this.translateY;
     }
-
 
     public void setTranslateY(int y) {
         this.translateY.set(y);
     }
 
-
     public int getId() {
         return id;
     }
-
 
     public void setMap(Map map) {
         this.map = map;
     }
 
-
     public Map getMap() {
         return map;
     }
 
-
     public boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 700 && 0 <= y && y + 20 <= 700);
+        return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 790);
     }
 }
