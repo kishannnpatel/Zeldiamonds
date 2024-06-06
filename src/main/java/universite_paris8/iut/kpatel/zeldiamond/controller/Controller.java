@@ -99,7 +99,7 @@ public class Controller implements Initializable {
                 Duration.seconds(0.017),// Définir la durée de l'image
                 ev -> {
                     if (temps == 10000) {
-                        System.out.println("fin");
+                        System.out.println("fin   ");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
                         System.out.println("un tour");
