@@ -74,7 +74,7 @@ public abstract class Acteur {
     }
 
     public boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 870);
+        return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 835);
     }
     public void depGauche(){
         int t = getTranslateX() - getVitesse();

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import universite_paris8.iut.kpatel.zeldiamond.controller.Controller;
 
 public class Application extends javafx.application.Application {
 
@@ -16,6 +17,7 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Zeldiamond");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {

@@ -37,6 +37,8 @@ public class Controller implements Initializable {
     private Timeline gameLoop;
     private int temps;
     private Ennemi ennemi;
+    @FXML
+    private Pane Coeur;
 
 
 
@@ -134,7 +136,6 @@ public class Controller implements Initializable {
 
         Random random = new Random();
         int direction = random.nextInt(4) + 1; // Génère un nombre aléatoire entre 1 et 4
-
 
             switch (direction) {
                 case 1:

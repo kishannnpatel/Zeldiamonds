@@ -40,7 +40,6 @@ public class VueJoueur {
 
     }
 
-
     public ImageView getImg() {
         return img;
     }
@@ -49,5 +48,7 @@ public class VueJoueur {
     public Pane getRec() {
         return rec;
     }
+
+
 
 }

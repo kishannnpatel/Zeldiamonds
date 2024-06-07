@@ -2,6 +2,7 @@ package universite_paris8.iut.kpatel.zeldiamond.vue;
 
 
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -12,9 +13,11 @@ public class VueMap {
     private TilePane  tpMap;
 
 
+
     public VueMap(int[][] map, TilePane tpMap){
         this.map=map;
         this.tpMap=tpMap;
+
 
 
     }
