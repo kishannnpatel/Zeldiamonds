@@ -4,8 +4,8 @@ package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 public class Joueur  extends Acteur {
 
 
-    public Joueur(int pv , int vitesse) {
-        super(pv , vitesse);
+    public Joueur(int pv , int vitesse, int degats) {
+        super(pv , vitesse, degats);
     }
 
 
@@ -44,10 +44,20 @@ public class Joueur  extends Acteur {
         }
     }
 
+    @Override
+    public void attaquer(Acteur ennemi) {
+        if (getTranslateX()==ennemi.getTranslateX() && getTranslateY()==ennemi.getTranslateY()){
+
+        }
 
 
 
+    }
 
+    @Override
+    public void recevoirDegats(Acteur ennemi) {
+
+    }
 
 
 }
