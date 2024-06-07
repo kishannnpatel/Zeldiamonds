@@ -7,4 +7,5 @@ public class Ennemi extends Acteur {
         super(pv, vitesse);
     }
 
+
 }

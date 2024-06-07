@@ -96,7 +96,7 @@ public class Controller implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);// L'animation se répétera indéfiniment
         System.out.println("début loop");
         KeyFrame keyFrame = new KeyFrame(
-                Duration.seconds(0.017),// Définir la durée de l'image
+                Duration.seconds(0.030),// Définir la durée de l'image
                 ev -> {
                     if (temps == 10000) {
                         System.out.println("fin   ");
