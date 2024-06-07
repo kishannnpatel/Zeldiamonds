@@ -27,8 +27,8 @@ public class VueEnnemi {
         img1.setImage(new Image("file:src/main/resources/" +
                 "universite_paris8/iut/kpatel/" +
                 "zeldiamond/enemie/ennemi_down_12.png"));
-        img1.setFitHeight(40);
-        img1.setFitWidth(40);
+        img1.setFitHeight(70);
+        img1.setFitWidth(70);
         // Définition de l'ID de l'ImageView pour identifier ce joueur
         this.img1.setId(String.valueOf(id));
         // Création d'un Pane pour contenir l'ImageView
