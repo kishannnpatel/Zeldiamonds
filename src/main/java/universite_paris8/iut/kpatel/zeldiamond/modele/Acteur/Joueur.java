@@ -13,8 +13,8 @@ public class Joueur extends Acteur {
 
     private List<Ennemi>cible;
 
-    public Joueur(int pv, int vitesse , int x , int y) {
-        super(pv , vitesse , x , y);
+    public Joueur(int pv, int vitesse , int degats ) {
+        super(pv , vitesse , degats);
         this.pVie = pv;
         this.cible = new ArrayList<>();
 

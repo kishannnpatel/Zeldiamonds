@@ -14,7 +14,7 @@ public abstract class Acteur {
     private Map map;
 
 
-    public Acteur(int pv, int vitesse, int degats, int y) {
+    public Acteur(int pv, int vitesse, int degats) {
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
         this.translateX = new SimpleIntegerProperty(0);// Initialisation de translateX à 0
         this.translateY = new SimpleIntegerProperty(0);// Initialisation de translateY à 0

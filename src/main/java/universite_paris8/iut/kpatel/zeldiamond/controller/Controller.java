@@ -46,8 +46,8 @@ public class Controller implements Initializable {
         this.map = new Map();
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
-        this.joueur = new Joueur(100, 10 , 30 , 40);
-        this.ennemi = new Ennemi(40 ,9 , 10 , 20);
+        this.joueur = new Joueur(100, 15 , 30);
+        this.ennemi = new Ennemi(40 ,9 , 10 );
         spriteJoueur();
         spriteEnnemi();
         Animation();
