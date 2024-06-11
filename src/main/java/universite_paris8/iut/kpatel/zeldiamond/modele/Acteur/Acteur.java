@@ -12,7 +12,7 @@ public abstract class Acteur {
     protected IntegerProperty translateY;
     protected int id;
     private Map map;
-    public int degats;
+    protected int degats;
 
 
     public Acteur(int pv, int vitesse,int degats) {
@@ -111,7 +111,5 @@ public abstract class Acteur {
             setTranslateY(t);
         }
     }
-    public abstract void attaquer(Acteur acteur);
-    public abstract void recevoirDegats();
 
 }

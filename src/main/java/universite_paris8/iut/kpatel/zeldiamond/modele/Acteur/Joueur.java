@@ -1,5 +1,6 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Armes;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueArmes;
@@ -9,18 +10,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur extends Acteur {
-    private Epee  epee;
+    private Armes  armes;
     private VueCoeur vueCoeur;
+    private int pVie;
     private boolean ramasseEpee;
 
     private List<Ennemi>cible;
-    private int degats;
 
     public Joueur(int pv, int vitesse , int degats ) {
         super(pv , vitesse , degats);
+        this.pVie = pv;
         this.cible = new ArrayList<>();
 
     }
+    public boolean ramasseEpee() {
+        return ramasseEpee;
+    }
+
+    public void ramasserArme(Epee epee, VueArmes vueArmes) {
+        this.armes = epee;
+        this.ramasseEpee = true;
+        epee.translateXProperty().bind(this.translateXProperty());
+        epee.translateYProperty().bind(this.translateYProperty().subtract(10));
+        vueArmes.getImageView().setVisible(false);
+        System.out.println("Épée ramassée");
+    }
+
+    // Détection de collision
+    public boolean isCollision(Armes arme) {
+        double distance = Math.sqrt(Math.pow(getTranslateX() - arme.getTranslateX(), 2) + Math.pow(getTranslateY() - arme.getTranslateY(), 2));
+        boolean collision = distance < 50; // Vous pouvez ajuster la distance selon vos besoins
+        System.out.println("Collision status: " + collision);
+        return collision;
+    }
+
 
     // COEUR ET PV
 
@@ -30,17 +53,17 @@ public class Joueur extends Acteur {
     }
 
     public int getpVie() {
-        return pv;
+        return pVie;
     }
 
     public void setpVie(int pVie) {
-        this.pv = pVie;
+        this.pVie = pVie;
         miseAjourCoeur();
     }
 
     public void miseAjourCoeur() {
         if (vueCoeur != null) {
-            vueCoeur.afficherImageSelonVie(pv);
+            vueCoeur.afficherImageSelonVie(pVie);
         }
     }
 
@@ -48,76 +71,6 @@ public class Joueur extends Acteur {
     @Override
     public int getPv() {
         return super.getPv();
-    }
-
-
-    // Epee
-
-    public boolean ramasseEpee() {
-        return ramasseEpee;
-    }
-
-    public void ramasserArme(Epee epee, VueArmes vueArmes) {
-        this.epee = epee;
-        this.ramasseEpee = true;
-        //vueArmes.hideArme();  // Hide the sword's ImageView
-    }
-
-    // DEPLACEMENT
-
-    public void depGauche() {
-        int t = getTranslateX() - getVitesse();
-        if (dansMap(t, getTranslateY())) {
-            if (!getMap().colisionsMap(t, getTranslateY())) return;
-            setTranslateX(t);
-        }
-    }
-
-    public void depDroite() {
-        int t = getTranslateX() + getVitesse();
-        if (dansMap(t, getTranslateY())) {
-            if (!getMap().colisionsMap(t, getTranslateY())) return;
-            setTranslateX(t);
-        }
-    }
-
-    public void depBas() {
-        int t = getTranslateY() + getVitesse();
-        if (dansMap(getTranslateX(), t)) {
-            if (!getMap().colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }
-
-    public void depHaut() {
-        int t = getTranslateY() - getVitesse();
-        if (dansMap(getTranslateX(), t)) {
-            if (!getMap().colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }
-
-    private static final double TOLERANCE = 20;
-
-
-
-
-    @Override
-    public void attaquer(Acteur ennemi) {
-        if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
-                Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
-            ennemi.recevoirDegats();
-
-        }
-    }
-
-    @Override
-    public void recevoirDegats() {
-        {
-            pv = getpVie()-10;
-            miseAjourCoeur();
-
-        }
     }
 
 

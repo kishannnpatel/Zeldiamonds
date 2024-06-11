@@ -36,8 +36,9 @@ public class Controller implements Initializable {
     private HBox Coeur; // Supposons que hboxCoeur est l'élément dans votre fichier FXML où vous souhaitez afficher les images de cœur.
     private List<Ennemi> listeDesEnnemis;
     private VueCoeur vueCoeur;
-
     private Epee epee;
+    private VueArmes vueArmes;
+
 
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
@@ -47,8 +48,8 @@ public class Controller implements Initializable {
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100, 15 , 30);
-        this.ennemi = new Ennemi(40 , 10, 10 );
-        this.epee = new Epee(200 , 200 , 20);
+        this.ennemi = new Ennemi(40 , 10, 30 );
+        this.epee = new Epee(200);
         spriteJoueur();
         spriteEnnemi();
         Animation();
@@ -56,10 +57,11 @@ public class Controller implements Initializable {
         joueur.setVueCoeur(vueCoeur); // Ensure the joueur object has the heart sprite reference
         gameLoop.play();
         spriteArme();
+
     }
 
     public void spriteJoueur() {
-        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
+        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);// Ajoutez ceci
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
         Pane pane = vueJoueur.getRec();
@@ -74,13 +76,16 @@ public class Controller implements Initializable {
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
+
+
+
+
     private void spriteArme() {
-        VueArmes vueArmes = new VueArmes(paneMap, epee);
+        vueArmes = new VueArmes(paneMap, epee);
         vueArmes.armes();
-        epee.setPosition(400, 500);
-        epee.translateXProperty().bind(joueur.translateXProperty());
-        epee.translateYProperty().bind(joueur.translateYProperty().subtract(+8));
+        epee.setPosition(400, 200);
     }
+
 
 
     /*----------------------Animation-------------------------------*/
@@ -97,14 +102,11 @@ public class Controller implements Initializable {
                         System.out.println("fin   ");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
-                        ennemi.attaquer(joueur);
-                        joueur.attaquer(ennemi);
-                        System.out.println(ennemi.getPv());
+                        System.out.println("un tour");
                         bougerEnnemi();
                     }
                     temps++;
                 }
-
         );
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);
@@ -113,6 +115,7 @@ public class Controller implements Initializable {
 
     @FXML
     public void bougerJoueur(KeyEvent event) {
+
         if (event.getCode() == KeyCode.Q) {
             joueur.depGauche();
         }
@@ -124,6 +127,15 @@ public class Controller implements Initializable {
         }
         if (event.getCode() == KeyCode.Z) {
             joueur.depHaut();
+        }if (event.getCode() == KeyCode.E) {
+            System.out.println("Touche E pressée");
+            if (joueur.isCollision(epee)) {
+                System.out.println("Collision détectée avec l'épée");
+                joueur.ramasserArme(epee, new VueArmes(paneMap, epee));
+            } else {
+                System.out.println("Pas de collision avec l'épée");
+            }
+
         }
     }
 
