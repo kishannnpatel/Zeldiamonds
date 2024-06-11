@@ -1,30 +1,27 @@
 package universite_paris8.iut.kpatel.zeldiamond.controller;
 
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueCoeur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
 
 import java.net.URL;
+import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-
 public class Controller implements Initializable {
-
 
     @FXML
     private BorderPane borderPane;
@@ -38,38 +35,26 @@ public class Controller implements Initializable {
     private int temps;
     private Ennemi ennemi;
     @FXML
-    private Pane Coeur;
-
-
-
-
-
-
-
-
-
+    private HBox Coeur; // Supposons que hboxCoeur est l'élément dans votre fichier FXML où vous souhaitez afficher les images de cœur.
+    private List<Ennemi> listeDesEnnemis;
+    private VueCoeur vueCoeur;
 
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
-
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         this.map = new Map();
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
-        this.joueur = new Joueur(100, 10);
-
-
-        this.ennemi = new Ennemi(90, 10);
+        this.joueur = new Joueur(100, 10 , 30 , 40);
+        this.ennemi = new Ennemi(40 ,9 , 10 , 20);
         spriteJoueur();
         spriteEnnemi();
-
-
         Animation();
+        vueCoeur = new VueCoeur(Coeur);
+        joueur.setVueCoeur(vueCoeur); // Ensure the joueur object has the heart sprite reference
         gameLoop.play();
-
     }
-
 
     public void spriteJoueur() {
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
@@ -80,7 +65,6 @@ public class Controller implements Initializable {
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
 
-
     public void spriteEnnemi() {
         VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
         vueennemi.creeVue2();
@@ -88,6 +72,7 @@ public class Controller implements Initializable {
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
+
 
 
     /*----------------------Animation-------------------------------*/

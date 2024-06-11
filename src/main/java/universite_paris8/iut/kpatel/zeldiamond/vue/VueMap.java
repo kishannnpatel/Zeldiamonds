@@ -12,16 +12,10 @@ public class VueMap {
     private  int[][] map ;
     private TilePane  tpMap;
 
-
-
     public VueMap(int[][] map, TilePane tpMap){
         this.map=map;
         this.tpMap=tpMap;
-
-
-
     }
-
 
     public void spriteMap() {
         for (int i = 0; i < this.map.length; i++) {
@@ -166,8 +160,6 @@ public class VueMap {
                             "zeldiamond/tilemap/Fontaine/22.png");
                     r.setFill(new ImagePattern(img));
                 }
-
-
 
                 this.tpMap.getChildren().add(r);// Ajout  rectangle au conteneur TPMap pour l'afficher.
             }

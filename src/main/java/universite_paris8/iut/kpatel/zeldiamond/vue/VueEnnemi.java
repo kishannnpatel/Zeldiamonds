@@ -1,13 +1,11 @@
 package universite_paris8.iut.kpatel.zeldiamond.vue;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
 public class VueEnnemi {
-    private int[][] tab;
     private ImageView img1;
     private Pane rec1;
     private int id;
@@ -16,7 +14,6 @@ public class VueEnnemi {
 
     public VueEnnemi(int id, Pane paneMap) {
         this.paneMap = paneMap;
-        this.tab=tab;
         this.id = id;
     }
 
@@ -41,6 +38,10 @@ public class VueEnnemi {
 
     }
 
+    public void hideEnnemi() {
+        img1.setVisible(false);
+    }
+
 
     public ImageView getImg() {
         return img1;
@@ -50,16 +51,4 @@ public class VueEnnemi {
     public Pane getRec() {
         return rec1;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

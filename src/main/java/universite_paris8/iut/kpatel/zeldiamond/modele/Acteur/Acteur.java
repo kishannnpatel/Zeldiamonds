@@ -14,7 +14,7 @@ public abstract class Acteur {
     private Map map;
 
 
-    public Acteur(int pv, int vitesse) {
+    public Acteur(int pv, int vitesse, int degats, int y) {
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
         this.translateX = new SimpleIntegerProperty(0);// Initialisation de translateX à 0
         this.translateY = new SimpleIntegerProperty(0);// Initialisation de translateY à 0
@@ -76,6 +76,9 @@ public abstract class Acteur {
     public boolean dansMap(int x, int y) {
         return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 835);
     }
+
+
+
     public void depGauche(){
         int t = getTranslateX() - getVitesse();
         if (dansMap(t, getTranslateY())) {
@@ -103,11 +106,12 @@ public abstract class Acteur {
     }
 
 
-    public void depHaut(){
+    public void depHaut() {
         int t = getTranslateY() - getVitesse();
         if (dansMap(getTranslateX(), t)) {
             if (!getMap().colisionsMap(getTranslateX(), t)) return;
             setTranslateY(t);
         }
     }
+
 }
