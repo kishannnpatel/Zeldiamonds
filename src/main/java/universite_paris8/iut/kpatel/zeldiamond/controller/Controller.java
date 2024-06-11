@@ -8,13 +8,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
-import universite_paris8.iut.kpatel.zeldiamond.vue.VueCoeur;
-import universite_paris8.iut.kpatel.zeldiamond.vue.VueEnnemi;
-import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
-import universite_paris8.iut.kpatel.zeldiamond.vue.VueMap;
+import universite_paris8.iut.kpatel.zeldiamond.vue.*;
 
 import java.net.URL;
 import java.util.List;
@@ -39,6 +37,8 @@ public class Controller implements Initializable {
     private List<Ennemi> listeDesEnnemis;
     private VueCoeur vueCoeur;
 
+    private Epee epee;
+
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
     @Override
@@ -48,12 +48,14 @@ public class Controller implements Initializable {
         vmap.spriteMap();
         this.joueur = new Joueur(100, 15 , 30);
         this.ennemi = new Ennemi(40 ,9 , 10 );
+        this.epee = new Epee(50 , 50 , 20 , 30);
         spriteJoueur();
         spriteEnnemi();
         Animation();
         vueCoeur = new VueCoeur(Coeur);
         joueur.setVueCoeur(vueCoeur); // Ensure the joueur object has the heart sprite reference
         gameLoop.play();
+        spriteArme();
     }
 
     public void spriteJoueur() {
@@ -72,7 +74,11 @@ public class Controller implements Initializable {
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
-
+    private void spriteArme() {
+        VueArmes vueArmes = new VueArmes(paneMap, epee);
+        vueArmes.armes();
+        epee.setPosition(35, 20);
+    }
 
 
     /*----------------------Animation-------------------------------*/
