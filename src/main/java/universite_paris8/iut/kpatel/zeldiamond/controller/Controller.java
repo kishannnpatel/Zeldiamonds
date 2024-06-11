@@ -47,8 +47,8 @@ public class Controller implements Initializable {
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100, 15 , 30);
-        this.ennemi = new Ennemi(40 ,9 , 10 );
-        this.epee = new Epee(50 , 50 , 20 , 30);
+        this.ennemi = new Ennemi(40 , 10, 30 );
+        this.epee = new Epee(200 , 200 , 20);
         spriteJoueur();
         spriteEnnemi();
         Animation();
@@ -77,7 +77,9 @@ public class Controller implements Initializable {
     private void spriteArme() {
         VueArmes vueArmes = new VueArmes(paneMap, epee);
         vueArmes.armes();
-        epee.setPosition(35, 20);
+        epee.setPosition(400, 500);
+        epee.translateXProperty().bind(joueur.translateXProperty());
+        epee.translateYProperty().bind(joueur.translateYProperty().subtract(+8));
     }
 
 

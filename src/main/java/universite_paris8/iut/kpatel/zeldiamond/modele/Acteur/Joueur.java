@@ -1,15 +1,19 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Armes;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueArmes;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueCoeur;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur extends Acteur {
-
+    private Armes  armes;
     private VueCoeur vueCoeur;
     private int pVie;
+    private boolean ramasseEpee;
 
     private List<Ennemi>cible;
 
@@ -19,6 +23,8 @@ public class Joueur extends Acteur {
         this.cible = new ArrayList<>();
 
     }
+
+    // COEUR ET PV
 
     public void setVueCoeur(VueCoeur vueCoeur) {
         this.vueCoeur = vueCoeur;
@@ -40,11 +46,26 @@ public class Joueur extends Acteur {
         }
     }
 
+
     @Override
     public int getPv() {
         return super.getPv();
     }
 
+
+    // Epee
+
+    public boolean ramasseEpee() {
+        return ramasseEpee;
+    }
+
+    public void ramasserArme(Epee epee, VueArmes vueArmes) {
+        this.armes = epee;
+        this.ramasseEpee = true;
+        //vueArmes.hideArme();  // Hide the sword's ImageView
+    }
+
+    // DEPLACEMENT
 
     public void depGauche() {
         int t = getTranslateX() - getVitesse();

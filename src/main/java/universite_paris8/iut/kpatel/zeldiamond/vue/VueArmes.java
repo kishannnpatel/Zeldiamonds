@@ -19,12 +19,14 @@ public class VueArmes {
         this.imageView = new ImageView();
         // Définition de l'image pour l'ImageView
         imageView.setImage(new javafx.scene.image.Image("file:src/main/resources/universite_paris8/iut/kpatel/zeldiamond/Armes/Epee.png"));
-        imageView.setFitHeight(35);
-        imageView.setFitWidth(35);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
         this.imageView.setId(String.valueOf(epee));
         // Ajout de l'ImageView au paneMap existant
         paneMap.getChildren().add(imageView);
         // Affichage des coordonnées de l'image dans la console pour le débogage
         System.out.println("Coordonnées de l'image: X=" + imageView.getX() + ", Y=" + imageView.getY());
+        imageView.translateXProperty().bind(epee.translateXProperty());
+        imageView.translateYProperty().bind(epee.translateYProperty());
     }
 }

@@ -6,19 +6,14 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.shape.Rectangle;
 
 public class Epee extends Armes{
-    private int taille ;
 
-    public Epee(int x, int y, int degats , int  taille) {
+    public Epee(int x, int y, int degats ) {
         super(x, y, degats);
-        this.taille = taille;
-    }
 
-    public int getTaille() {
-        return taille;
     }
 
     public void setPosition(int x , int y){
-        setTranslateX(x);
-        setTranslateY(y);
+      setTranslateX(x);
+      setTranslateY(y);
     }
 }

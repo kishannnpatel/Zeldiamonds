@@ -1,20 +1,20 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 
-public class Armes extends Acteur {
-  private IntegerProperty x;
-  private IntegerProperty y;
-  private int degats;
+public class Armes  extends Acteur {
 
-  public Armes ( int x , int y , int degats){
-      super(x , y , degats);
-      this.x = new SimpleIntegerProperty(x);
-      this.y = new SimpleIntegerProperty(y);
-      this.degats = degats;
-  }
+    private int degats;
+    private DoubleProperty x;
+    private DoubleProperty y;
 
+    public Armes(int degats, int x, int  y) {
+        super( x , y ,  degats);
+
+    }
 
 }
