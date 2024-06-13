@@ -15,6 +15,7 @@ import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
 import universite_paris8.iut.kpatel.zeldiamond.vue.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -32,13 +33,12 @@ public class Controller implements Initializable {
     private Timeline gameLoop;
     private int temps;
     private Ennemi ennemi;
+    private List<Ennemi> listeDesEnnemis;
     @FXML
     private HBox Coeur; // Supposons que hboxCoeur est l'élément dans votre fichier FXML où vous souhaitez afficher les images de cœur.
-    private List<Ennemi> listeDesEnnemis;
     private VueCoeur vueCoeur;
     private Epee epee;
     private VueArmes vueArmes;
-
 
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
@@ -77,16 +77,11 @@ public class Controller implements Initializable {
         pane.translateYProperty().bind(ennemi.translateYProperty());
     }
 
-
-
-
     private void spriteArme() {
         vueArmes = new VueArmes(paneMap, epee);
         vueArmes.armes();
         epee.setPosition(400, 200);
     }
-
-
 
     /*----------------------Animation-------------------------------*/
     //gameLoop
@@ -112,7 +107,6 @@ public class Controller implements Initializable {
         gameLoop.getKeyFrames().add(keyFrame);
     }
 
-
     @FXML
     public void bougerJoueur(KeyEvent event) {
 
@@ -135,7 +129,9 @@ public class Controller implements Initializable {
             } else {
                 System.out.println("Pas de collision avec l'épée");
             }
-
+        } if (event.getCode() == KeyCode.R) {
+           System.out.println("Touche R pressée");
+           joueur.lacherArme(vueArmes);
         }
     }
 
@@ -158,7 +154,6 @@ public class Controller implements Initializable {
                 case 4:
                     ennemi.depBas();
                     break;
-
             }
         }
     }

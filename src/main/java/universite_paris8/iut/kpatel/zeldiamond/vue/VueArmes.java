@@ -18,8 +18,8 @@ public class VueArmes {
     public void armes() {
         this.imageView = new ImageView();
         imageView.setImage(new javafx.scene.image.Image("file:src/main/resources/universite_paris8/iut/kpatel/zeldiamond/Armes/Epee.png"));
-        imageView.setFitHeight(30);
-        imageView.setFitWidth(30);
+        imageView.setFitHeight(38);
+        imageView.setFitWidth(38);
         this.imageView.setId(String.valueOf(epee));
         paneMap.getChildren().add(imageView);
         imageView.translateXProperty().bind(epee.translateXProperty());

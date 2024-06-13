@@ -16,9 +16,6 @@ public class Armes {
         this.translateX = new SimpleIntegerProperty(0);;
         this.translateY = new SimpleIntegerProperty(0);;
         this.degats= degats;
-
-
-
     }
 
     public int getTranslateX() {

@@ -1,11 +1,8 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele;
 
-
 public class Map {
 
-
     private int[][]tableau;
-
 
     public Map() {
         this.tableau = new int[][]{
@@ -34,28 +31,18 @@ public class Map {
                 {0, 0, 0, 0, 0, 10, 13, 16, 0, 0, 10, 13, 16, 0, 0, 10, 13, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 11, 14, 17, 0, 0, 11, 14, 17, 0, 0, 11, 14, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 12, 15, 18, 0, 0, 12, 15, 18, 0, 0, 12, 15, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-
-
-
-
-
-
-
         };
     }
-
 
     public int[][] getTableau() {
         return tableau;
     }
-
 
     public boolean colisionsMap(int x, int y) {
         double joueurX = x;
         double joueurY = y;
         double joueurWidth = 20; // Largeur du joueur
         double joueurHeight = 20; // Hauteur du joueur
-
 
         for (int i = 0; i < this.getTableau().length; i++) {
             for (int j = 0; j < this.getTableau()[i].length; j++) {
@@ -71,14 +58,9 @@ public class Map {
                             joueurY < obstacleY + obstacleHeight &&
                             joueurY + joueurHeight > obstacleY) {
                         return false;
-                        // Collision détectée, gérer ici
                     }
-
-
                 }
             }
         } return true;
     }
-
-
 }

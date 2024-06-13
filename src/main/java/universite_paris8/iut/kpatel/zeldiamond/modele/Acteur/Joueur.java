@@ -12,20 +12,18 @@ import java.util.List;
 public class Joueur extends Acteur {
     private Armes  armes;
     private VueCoeur vueCoeur;
-    private int pVie;
     private boolean ramasseEpee;
+    private VueArmes vueArmes;
 
-    private List<Ennemi>cible;
 
     public Joueur(int pv, int vitesse , int degats ) {
         super(pv , vitesse , degats);
-        this.pVie = pv;
-        this.cible = new ArrayList<>();
-
     }
+
     public boolean ramasseEpee() {
         return ramasseEpee;
     }
+
 
     public void ramasserArme(Epee epee, VueArmes vueArmes) {
         this.armes = epee;
@@ -34,6 +32,20 @@ public class Joueur extends Acteur {
         epee.translateYProperty().bind(this.translateYProperty().subtract(10));
         vueArmes.getImageView().setVisible(false);
         System.out.println("Épée ramassée");
+    }
+
+    public void lacherArme(VueArmes vueArmes) {
+        if (ramasseEpee && armes instanceof Epee) {
+            Epee epee = (Epee) armes;
+            epee.translateXProperty().unbind();
+            epee.translateYProperty().unbind();
+            epee.setTranslateX(this.getTranslateX());
+            epee.setTranslateY(this.getTranslateY() + 10);
+            vueArmes.getImageView().setVisible(true);
+            this.armes = null;
+            this.ramasseEpee = false;
+            System.out.println("Épée lâchée");
+        }
     }
 
     // Détection de collision
@@ -53,17 +65,17 @@ public class Joueur extends Acteur {
     }
 
     public int getpVie() {
-        return pVie;
+        return pv;
     }
 
     public void setpVie(int pVie) {
-        this.pVie = pVie;
+        this.pv = pVie;
         miseAjourCoeur();
     }
 
     public void miseAjourCoeur() {
         if (vueCoeur != null) {
-            vueCoeur.afficherImageSelonVie(pVie);
+            vueCoeur.afficherImageSelonVie(pv);
         }
     }
 
