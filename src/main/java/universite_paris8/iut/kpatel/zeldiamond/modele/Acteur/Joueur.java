@@ -1,6 +1,5 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
-import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Armes;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueArmes;
@@ -10,16 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur extends Acteur {
-    private Armes  armes;
+    private Epee  epee;
     private VueCoeur vueCoeur;
-    private int pVie;
     private boolean ramasseEpee;
 
     private List<Ennemi>cible;
+    private int degats;
 
     public Joueur(int pv, int vitesse , int degats ) {
         super(pv , vitesse , degats);
-        this.pVie = pv;
         this.cible = new ArrayList<>();
 
     }
@@ -32,17 +30,17 @@ public class Joueur extends Acteur {
     }
 
     public int getpVie() {
-        return pVie;
+        return pv;
     }
 
     public void setpVie(int pVie) {
-        this.pVie = pVie;
+        this.pv = pVie;
         miseAjourCoeur();
     }
 
     public void miseAjourCoeur() {
         if (vueCoeur != null) {
-            vueCoeur.afficherImageSelonVie(pVie);
+            vueCoeur.afficherImageSelonVie(pv);
         }
     }
 
@@ -60,7 +58,7 @@ public class Joueur extends Acteur {
     }
 
     public void ramasserArme(Epee epee, VueArmes vueArmes) {
-        this.armes = epee;
+        this.epee = epee;
         this.ramasseEpee = true;
         //vueArmes.hideArme();  // Hide the sword's ImageView
     }
@@ -96,6 +94,20 @@ public class Joueur extends Acteur {
         if (dansMap(getTranslateX(), t)) {
             if (!getMap().colisionsMap(getTranslateX(), t)) return;
             setTranslateY(t);
+        }
+    }
+
+    @Override
+    public void attaquer(Acteur acteur) {
+
+    }
+
+    @Override
+    public void recevoirDegats() {
+        {
+            pv = getpVie()-10;
+            miseAjourCoeur();
+
         }
     }
 

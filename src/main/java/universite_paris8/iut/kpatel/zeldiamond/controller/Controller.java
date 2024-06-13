@@ -47,7 +47,7 @@ public class Controller implements Initializable {
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
         this.joueur = new Joueur(100, 15 , 30);
-        this.ennemi = new Ennemi(40 , 10, 30 );
+        this.ennemi = new Ennemi(40 , 10, 10 );
         this.epee = new Epee(200 , 200 , 20);
         spriteJoueur();
         spriteEnnemi();
@@ -97,11 +97,13 @@ public class Controller implements Initializable {
                         System.out.println("fin   ");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
-                        System.out.println("un tour");
+                        ennemi.attaquer(joueur);
+                        System.out.println(joueur.getPv());
                         bougerEnnemi();
                     }
                     temps++;
                 }
+
         );
         // ajoute le key frame dans le gameLoop timeline
         gameLoop.getKeyFrames().add(keyFrame);

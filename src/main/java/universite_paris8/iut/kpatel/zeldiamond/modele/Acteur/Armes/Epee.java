@@ -1,16 +1,25 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes;
 
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.shape.Rectangle;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 
-public class Epee extends Armes{
+public class Epee extends Acteur {
 
     public Epee(int x, int y, int degats ) {
-        super(x, y, degats);
+        super(x,y,degats);
 
     }
+
+    @Override
+    public void attaquer(Acteur acteur) {
+
+    }
+
+    @Override
+    public void recevoirDegats() {
+
+    }
+
 
     public void setPosition(int x , int y){
       setTranslateX(x);
