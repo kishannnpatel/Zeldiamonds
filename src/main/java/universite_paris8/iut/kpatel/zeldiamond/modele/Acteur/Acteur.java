@@ -112,4 +112,6 @@ public abstract class Acteur {
         }
     }
 
+    public abstract void attaquer(Acteur acteur);
+    public abstract void recevoirDegats();
 }

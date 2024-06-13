@@ -98,7 +98,9 @@ public class Controller implements Initializable {
                         System.out.println("fin   ");
                         gameLoop.stop();// Arrêter l'animation
                     } else if (temps % 5 == 0) {
-                        System.out.println("un tour");
+                        ennemi.attaquer(joueur);
+                        joueur.attaquer(ennemi);
+                        System.out.println(joueur.getPv());
                         bougerEnnemi();
                     }
                     temps++;

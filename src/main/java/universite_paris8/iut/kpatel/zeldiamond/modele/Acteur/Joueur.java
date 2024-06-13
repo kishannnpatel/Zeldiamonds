@@ -85,5 +85,15 @@ public class Joueur extends Acteur {
         return super.getPv();
     }
 
+    @Override
+    public void attaquer(Acteur ennemi) {
+
+
+    }
+
+    public void recevoirDegats() {
+        pv -= 10; // Réduire les points de vie du joueur
+        miseAjourCoeur(); // Mettre à jour la vue des cœurs
+    }
 
 }
