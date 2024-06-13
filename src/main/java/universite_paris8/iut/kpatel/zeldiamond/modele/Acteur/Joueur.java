@@ -97,9 +97,18 @@ public class Joueur extends Acteur {
         }
     }
 
-    @Override
-    public void attaquer(Acteur acteur) {
+    private static final double TOLERANCE = 20;
 
+
+
+
+    @Override
+    public void attaquer(Acteur ennemi) {
+        if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
+                Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
+            ennemi.recevoirDegats();
+
+        }
     }
 
     @Override

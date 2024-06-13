@@ -10,7 +10,7 @@ public class Ennemi extends Acteur {
     }
 
 
-    private static final double TOLERANCE = 20; // Par exemple, 0.1 peut être ajusté selon vos besoins
+    private static final double TOLERANCE = 20;
 
 
 
@@ -26,6 +26,7 @@ public class Ennemi extends Acteur {
 
     @Override
     public void recevoirDegats() {
+        pv = getPv()-20;
 
     }
 
