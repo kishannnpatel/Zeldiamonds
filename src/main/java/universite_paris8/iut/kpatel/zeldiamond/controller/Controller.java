@@ -61,6 +61,7 @@ public class Controller implements Initializable {
     }
 
     public void spriteJoueur() {
+
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);// Ajoutez ceci
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
