@@ -1,10 +1,12 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
+import javafx.scene.input.KeyCode;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Armes;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueArmes;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueCoeur;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +87,17 @@ public class Joueur extends Acteur {
         return super.getPv();
     }
 
+    private static final double TOLERANCE = 20;
     @Override
     public void attaquer(Acteur ennemi) {
+            if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
+                    Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
+                ennemi.recevoirDegats();
+            }
+        }
 
 
-    }
+
 
     public void recevoirDegats() {
         pv -= 10; // Réduire les points de vie du joueur

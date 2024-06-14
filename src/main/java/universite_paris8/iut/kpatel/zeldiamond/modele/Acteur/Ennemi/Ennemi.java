@@ -7,7 +7,7 @@ public class Ennemi extends Acteur {
 
     public Ennemi(int pv, int vitesse, int degats) {super(pv, vitesse, degats);
     }
-    private static final double TOLERANCE = 20; // Par exemple, 0.1 peut être ajusté selon vos besoins
+    private static final double TOLERANCE = 20;
 
     @Override
     public void attaquer(Acteur joueur) {
@@ -19,6 +19,7 @@ public class Ennemi extends Acteur {
 
     @Override
     public void recevoirDegats() {
+        pv -= 20;
 
     }
 

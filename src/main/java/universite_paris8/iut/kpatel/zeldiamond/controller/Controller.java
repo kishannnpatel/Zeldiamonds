@@ -100,7 +100,7 @@ public class Controller implements Initializable {
                     } else if (temps % 5 == 0) {
                         ennemi.attaquer(joueur);
                         joueur.attaquer(ennemi);
-                        System.out.println(joueur.getPv());
+                        System.out.println(ennemi.getPv());
                         bougerEnnemi();
                     }
                     temps++;
