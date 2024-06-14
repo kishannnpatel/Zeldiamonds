@@ -85,7 +85,6 @@ public abstract class Acteur {
         }
     }
 
-
     public void depDroite(){
         int t = getTranslateX() + getVitesse();
         if (dansMap(t, getTranslateY())) {
@@ -93,7 +92,6 @@ public abstract class Acteur {
             setTranslateX(t);
         }
     }
-
 
     public void depBas(){
         int t = getTranslateY() + getVitesse();
@@ -103,7 +101,6 @@ public abstract class Acteur {
         }
     }
 
-
     public void depHaut() {
         int t = getTranslateY() - getVitesse();
         if (dansMap(getTranslateX(), t)) {
@@ -112,5 +109,9 @@ public abstract class Acteur {
         }
     }
 
+    public abstract void attaquer(Acteur ennemi);
+
     public abstract void recevoirDegats();
+
+    protected abstract void mourir();
 }

@@ -62,29 +62,32 @@ public class Controller implements Initializable {
     }
 
     public void spriteJoueur() {
-        this.joueur = new Joueur(500 , 500 ,100, 15 , 8);
-        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);// Ajoutez ceci
+        this.joueur = new Joueur(500, 500, 100, 15, 80); // Pass paneMap
+        paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
+        joueur.setVueJoueur(vueJoueur); // Set the reference
         Pane pane = vueJoueur.getRec();
         pane.translateXProperty().bind(joueur.translateXProperty());
         pane.translateYProperty().bind(joueur.translateYProperty());
     }
 
     public void spriteEnnemi() {
-        this.ennemi = new Ennemi(100 , 100 , 20 , 8 , 5);
-        VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
-        vueennemi.creeVueEnnemi();
-        Pane pane = vueennemi.getRec();
+        this.ennemi = new Ennemi(100, 100, 20, 8, 5);
+        VueEnnemi vueEnnemi = new VueEnnemi(ennemi.getId(), paneMap);
+        vueEnnemi.creeVueEnnemi();
+        ennemi.setVueEnnemi(vueEnnemi); // Set the reference
+        Pane pane = vueEnnemi.getRec();
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
         listEnnemis.add(ennemi);
     }
 
     public void spriteEnnemiBoss() {
-        this.ennemiBoss =new EnnemiBoss(700 , 700 , 80 , 10 , 10);
+        this.ennemiBoss = new EnnemiBoss(700, 700, 40, 8, 6);
         VueEnnemiBoss vueEnnemiBoss = new VueEnnemiBoss(ennemiBoss.getId(), paneMap);
         vueEnnemiBoss.creeVueEnnemiBoss();
+        ennemiBoss.setVueEnnemiBoss(vueEnnemiBoss); // Set the reference
         Pane pane = vueEnnemiBoss.getRec();
         pane.translateXProperty().bind(ennemiBoss.translateXProperty());
         pane.translateYProperty().bind(ennemiBoss.translateYProperty());
@@ -92,7 +95,7 @@ public class Controller implements Initializable {
     }
 
     private void spriteArme() {
-        this.epee = new Epee(14);
+        this.epee = new Epee(100);
         vueArmes = new VueArmes(paneMap, epee);
         vueArmes.armes();
         epee.setPosition(400, 200);
@@ -115,6 +118,7 @@ public class Controller implements Initializable {
                         ennemi.attaquer(joueur);
                         joueur.attaquer(ennemi);
                         ennemiBoss.attaquer(joueur);
+                        epee.attaquer(ennemi);
                         System.out.println(ennemi.getPv());
                         System.out.println(ennemiBoss.getPv());
                         bougerEnnemi();
@@ -151,6 +155,8 @@ public class Controller implements Initializable {
         } if (event.getCode() == KeyCode.R) {
            System.out.println("Touche R pressée");
            joueur.lacherArme(vueArmes);
+        }  if (event.getCode() == KeyCode.A){
+            joueur.attaquer(ennemi);
         }
     }
 

@@ -4,11 +4,10 @@ package universite_paris8.iut.kpatel.zeldiamond.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 
 
 public class VueJoueur {
-    private ImageView img;
+    private ImageView imageView;
     private Pane rec;
     private int id;
     private Pane paneMap;
@@ -21,30 +20,33 @@ public class VueJoueur {
 
 
     public void creeVue() {
-        this.img = new ImageView();
+        this.imageView = new ImageView();
         // Définition de l'image pour l'ImageView
-        img.setImage(new Image("file:src/main/resources/" +
+        imageView.setImage(new Image("file:src/main/resources/" +
                 "universite_paris8/iut/kpatel/" +
                 "zeldiamond/joueur/boy_down_1.png"));
-        img.setFitHeight(35);
-        img.setFitWidth(35);
+        imageView.setFitHeight(35);
+        imageView.setFitWidth(35);
         // Définition de l'ID de l'ImageView pour identifier ce joueur
-        this.img.setId(String.valueOf(id));
+        this.imageView.setId(String.valueOf(id));
         // Création d'un Pane pour contenir l'ImageView
         rec = new Pane();
-        rec.getChildren().add(img);// Ajout de l'ImageView au Pane
+        rec.getChildren().add(imageView);// Ajout de l'ImageView au Pane
         paneMap.getChildren().add(rec);// Ajout du Pane au paneMap
         // Affichage des coordonnées de l'image dans la console pour le débogage
-        System.out.println(img.getX() );
-        System.out.println(img.getY() );
+        System.out.println(imageView.getX() );
+        System.out.println(imageView.getY() );
 
 
     }
 
-    public ImageView getImg() {
-        return img;
+    public ImageView getImageView() {
+        return imageView;
     }
 
+    public void hideImage() {
+        imageView.setVisible(false);
+    }
 
     public Pane getRec() {
         return rec;

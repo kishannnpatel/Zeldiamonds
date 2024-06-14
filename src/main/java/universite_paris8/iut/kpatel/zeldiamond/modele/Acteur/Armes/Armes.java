@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 
-public class Armes {
+public abstract class Armes {
 
     private int degats;
     private IntegerProperty translateX;
@@ -46,4 +46,5 @@ public class Armes {
         return degats;
     }
 
+    public abstract void attaquer(Acteur ennemi);
 }

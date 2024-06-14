@@ -1,15 +1,11 @@
 package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
 
-import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Armes;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueArmes;
 import universite_paris8.iut.kpatel.zeldiamond.vue.VueCoeur;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import universite_paris8.iut.kpatel.zeldiamond.vue.VueJoueur;
 
 public class Joueur extends Acteur {
     private Armes  armes;
@@ -17,17 +13,13 @@ public class Joueur extends Acteur {
     private boolean ramasseEpee;
     private VueArmes vueArmes;
     private static final double TOLERANCE = 30;
+    private  VueJoueur vueJoueur;
+    private Pane paneMap;
 
 
     public Joueur(int x , int y, int pv, int vitesse , int degats ) {
         super(x , y ,pv , vitesse , degats);
     }
-
-    public boolean ramasseEpee() {
-        return ramasseEpee;
-    }
-
-
 
 
     public void ramasserArme(Epee epee, VueArmes vueArmes) {
@@ -61,9 +53,11 @@ public class Joueur extends Acteur {
         return collision;
     }
 
+    public void setVueJoueur(VueJoueur vueJoueur) {
+        this.vueJoueur = vueJoueur;
+    }
 
     // COEUR ET PV
-
     public void setVueCoeur(VueCoeur vueCoeur) {
         this.vueCoeur = vueCoeur;
         miseAjourCoeur();
@@ -90,23 +84,7 @@ public class Joueur extends Acteur {
         return super.getPv();
     }
 
-    private static final double TOLERANCE = 20;
     @Override
-    public void attaquer(Acteur ennemi) {
-            if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
-                    Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
-                ennemi.recevoirDegats();
-            }
-        }
-
-
-
-
-    public void recevoirDegats() {
-        pv -= 10; // Réduire les points de vie du joueur
-        miseAjourCoeur(); // Mettre à jour la vue des cœurs
-    }
-
     public void attaquer(Acteur ennemi) {
         if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
                 Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
@@ -114,9 +92,22 @@ public class Joueur extends Acteur {
         }
     }
 
+    @Override
     public void recevoirDegats() {
-        pv -= 10; // Réduire les points de vie du joueur
+        pv -= 5; // Réduire les points de vie du joueur
         miseAjourCoeur(); // Mettre à jour la vue des cœurs
+        if (pv <= 0) {
+            mourir(); // Handle death
+        }
     }
 
+    public void mourir() {
+        if (vueCoeur != null) {
+            vueCoeur.afficherImageSelonVie(0); // Display zero hearts
+        }
+        if (vueJoueur != null) {
+            vueJoueur.hideImage(); // Hide the player's image
+        }
+        System.out.println("Joueur est mort");
+    }
 }
