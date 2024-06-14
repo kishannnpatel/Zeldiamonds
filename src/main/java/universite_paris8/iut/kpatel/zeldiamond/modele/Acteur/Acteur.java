@@ -1,31 +1,30 @@
-package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur;
+package universite_paris8.iut.kpatel.zeldiamond.modele.Acteur; // Déclaration du package de la classe
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
+import javafx.beans.property.IntegerProperty; // Importation de la classe IntegerProperty de JavaFX
+import javafx.beans.property.SimpleIntegerProperty; // Importation de la classe SimpleIntegerProperty de JavaFX
+import universite_paris8.iut.kpatel.zeldiamond.modele.Map; // Importation de la classe Map
 
+public abstract class Acteur { // Déclaration de la classe abstraite Acteur
 
-public abstract class Acteur {
-    protected int pv; // Initialisation des points de vie avec l'argument du constructeur
-    private int vitesse = 10;
-    protected IntegerProperty translateX;
-    protected IntegerProperty translateY;
-    protected int id;
-    private Map map;
-    protected int degats;
+    protected int pv; // Points de vie de l'acteur, accessible aux classes filles et au même package
+    private int vitesse = 10; // Vitesse de déplacement par défaut
+    protected IntegerProperty translateX; // Propriété pour la position en X de l'acteur
+    protected IntegerProperty translateY; // Propriété pour la position en Y de l'acteur
+    protected int id; // Identifiant de l'acteur
+    private Map map; // Instance de la classe Map pour la gestion de la carte
+    protected int degats; // Dégâts infligés par l'acteur
 
-
-    public Acteur( int x , int  y , int pv, int vitesse,int degats) {
+    public Acteur(int x, int y, int pv, int vitesse, int degats) { // Constructeur de la classe Acteur avec plusieurs paramètres
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
-        this.translateX = new SimpleIntegerProperty(x);// Initialisation de translateX à 0
-        this.translateY = new SimpleIntegerProperty(x);// Initialisation de translateY à 0
-        this.id = 0; // Initialisation de l'id à 0
-        this.map = new Map();// Création d'une nouvelle instance de Map
-        this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeu
+        this.translateX = new SimpleIntegerProperty(x); // Initialisation de translateX avec la position X donnée
+        this.translateY = new SimpleIntegerProperty(y); // Initialisation de translateY avec la position Y donnée
+        this.id = 0; // Initialisation de l'id à 0 (à adapter selon la logique de votre jeu)
+        this.map = new Map(); // Création d'une nouvelle instance de Map (à adapter selon la logique de votre jeu)
+        this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeur
+        this.degats = degats; // Initialisation des dégâts avec l'argument du constructeur
     }
 
-    // ----------------les pV --------------
-
+    // Méthodes pour gérer les points de vie (pv)
     public void setPv(int pv) {
         this.pv = pv;
     }
@@ -34,10 +33,12 @@ public abstract class Acteur {
         return pv;
     }
 
+    // Méthode pour obtenir la vitesse
     public int getVitesse() {
         return vitesse;
     }
 
+    // Méthodes pour obtenir et gérer la position en X
     public int getTranslateX() {
         return this.translateX.get();
     }
@@ -50,6 +51,7 @@ public abstract class Acteur {
         this.translateX.set(x);
     }
 
+    // Méthodes pour obtenir et gérer la position en Y
     public int getTranslateY() {
         return this.translateY.get();
     }
@@ -62,10 +64,12 @@ public abstract class Acteur {
         this.translateY.set(y);
     }
 
+    // Méthode pour obtenir l'identifiant
     public int getId() {
         return id;
     }
 
+    // Méthodes pour obtenir et gérer la carte
     public void setMap(Map map) {
         this.map = map;
     }
@@ -74,43 +78,15 @@ public abstract class Acteur {
         return map;
     }
 
+    // Méthode pour vérifier si l'acteur est dans la carte
     public boolean dansMap(int x, int y) {
-        return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 835);
-    }
-    public void depGauche(){
-        int t = getTranslateX() - getVitesse();
-        if (dansMap(t, getTranslateY())) {
-            if (!getMap().colisionsMap(t, getTranslateY())) return;
-            setTranslateX(t);
-        }
+        return (0 <= x && x + 20 <= 1045 && 0 <= y && y + 20 <= 835); // Exemple de conditions à adapter selon la taille de votre carte
     }
 
-
-    public void depDroite(){
-        int t = getTranslateX() + getVitesse();
-        if (dansMap(t, getTranslateY())) {
-            if (!getMap().colisionsMap(t,getTranslateY())) return;
-            setTranslateX(t);
-        }
-    }
-
-
-    public void depBas(){
-        int t = getTranslateY() + getVitesse();
-        if (dansMap(getTranslateX(), t)) {
-            if (!getMap().colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }
-
-
-    public void depHaut() {
-        int t = getTranslateY() - getVitesse();
-        if (dansMap(getTranslateX(), t)) {
-            if (!getMap().colisionsMap(getTranslateX(), t)) return;
-            setTranslateY(t);
-        }
-    }
+    // Méthodes abstraites pour attaquer, recevoir des dégâts et mourir (implémentées dans les classes filles)
+    public abstract void attaquer(Acteur ennemi);
 
     public abstract void recevoirDegats();
+
+    protected abstract void mourir();
 }
