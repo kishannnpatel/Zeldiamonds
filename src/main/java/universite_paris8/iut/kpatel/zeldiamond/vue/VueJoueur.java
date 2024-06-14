@@ -4,6 +4,7 @@ package universite_paris8.iut.kpatel.zeldiamond.vue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 
 
 public class VueJoueur {
@@ -48,7 +49,4 @@ public class VueJoueur {
     public Pane getRec() {
         return rec;
     }
-
-
-
 }

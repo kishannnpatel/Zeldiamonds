@@ -15,10 +15,10 @@ public abstract class Acteur {
     protected int degats;
 
 
-    public Acteur(int pv, int vitesse,int degats) {
+    public Acteur( int x , int  y , int pv, int vitesse,int degats) {
         this.pv = pv; // Initialisation des points de vie avec l'argument du constructeur
-        this.translateX = new SimpleIntegerProperty(0);// Initialisation de translateX à 0
-        this.translateY = new SimpleIntegerProperty(0);// Initialisation de translateY à 0
+        this.translateX = new SimpleIntegerProperty(x);// Initialisation de translateX à 0
+        this.translateY = new SimpleIntegerProperty(x);// Initialisation de translateY à 0
         this.id = 0; // Initialisation de l'id à 0
         this.map = new Map();// Création d'une nouvelle instance de Map
         this.vitesse = vitesse; // Initialisation de la vitesse avec l'argument du constructeu
@@ -112,6 +112,5 @@ public abstract class Acteur {
         }
     }
 
-    public abstract void attaquer(Acteur acteur);
     public abstract void recevoirDegats();
 }

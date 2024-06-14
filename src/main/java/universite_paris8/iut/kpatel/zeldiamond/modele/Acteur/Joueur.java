@@ -16,15 +16,18 @@ public class Joueur extends Acteur {
     private VueCoeur vueCoeur;
     private boolean ramasseEpee;
     private VueArmes vueArmes;
+    private static final double TOLERANCE = 30;
 
 
-    public Joueur(int pv, int vitesse , int degats ) {
-        super(pv , vitesse , degats);
+    public Joueur(int x , int y, int pv, int vitesse , int degats ) {
+        super(x , y ,pv , vitesse , degats);
     }
 
     public boolean ramasseEpee() {
         return ramasseEpee;
     }
+
+
 
 
     public void ramasserArme(Epee epee, VueArmes vueArmes) {
@@ -98,6 +101,18 @@ public class Joueur extends Acteur {
 
 
 
+
+    public void recevoirDegats() {
+        pv -= 10; // Réduire les points de vie du joueur
+        miseAjourCoeur(); // Mettre à jour la vue des cœurs
+    }
+
+    public void attaquer(Acteur ennemi) {
+        if (Math.abs(getTranslateX() - ennemi.getTranslateX()) < TOLERANCE &&
+                Math.abs(getTranslateY() - ennemi.getTranslateY()) < TOLERANCE) {
+            ennemi.recevoirDegats();
+        }
+    }
 
     public void recevoirDegats() {
         pv -= 10; // Réduire les points de vie du joueur

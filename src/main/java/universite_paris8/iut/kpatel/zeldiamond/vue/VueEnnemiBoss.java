@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 
-public class VueEnnemi {
+public class VueEnnemiBoss {
     private ImageView imageView;
 
     private Pane rec;
@@ -14,18 +14,19 @@ public class VueEnnemi {
 
     private Pane paneMap;
 
-    public VueEnnemi(int id, Pane paneMap) {
+    public VueEnnemiBoss(int id, Pane paneMap) {
         this.paneMap = paneMap;
         this.id = id;
-        creeVueEnnemi();
+        creeVueEnnemiBoss();
+
     }
 
-    public void creeVueEnnemi() {
+    public void creeVueEnnemiBoss() {
         this.imageView = new ImageView();
         // Définition de l'image pour l'ImageView
         imageView.setImage(new Image("file:src/main/resources/" +
                 "universite_paris8/iut/kpatel/" +
-                "zeldiamond/enemie/ennemi.png"));
+                "zeldiamond/enemie/ennemiBoss.png"));
         imageView.setFitHeight(35);
         imageView.setFitWidth(35);
         // Définition de l'ID de l'ImageView pour identifier ce joueur

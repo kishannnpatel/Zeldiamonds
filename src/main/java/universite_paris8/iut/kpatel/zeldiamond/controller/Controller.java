@@ -8,15 +8,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Acteur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Armes.Epee;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.Ennemi;
+import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Ennemi.EnnemiBoss;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Acteur.Joueur;
 import universite_paris8.iut.kpatel.zeldiamond.modele.Map;
 import universite_paris8.iut.kpatel.zeldiamond.vue.*;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -33,35 +34,35 @@ public class Controller implements Initializable {
     private Timeline gameLoop;
     private int temps;
     private Ennemi ennemi;
-    private List<Ennemi> listeDesEnnemis;
+    private EnnemiBoss ennemiBoss;
     @FXML
     private HBox Coeur; // Supposons que hboxCoeur est l'élément dans votre fichier FXML où vous souhaitez afficher les images de cœur.
     private VueCoeur vueCoeur;
     private Epee epee;
     private VueArmes vueArmes;
+    private  ArrayList<Acteur> listEnnemis;
+
 
     /*---------------------initialise appelle de methode ,etc...-------------------------------*/
 
     @Override
     public void initialize(URL location, ResourceBundle resource) {
+        this.listEnnemis = new ArrayList<>();
         this.map = new Map();
         VueMap vmap = new VueMap(map.getTableau(), tilePaneMap);
         vmap.spriteMap();
-        this.joueur = new Joueur(100, 15 , 30);
-        this.ennemi = new Ennemi(40 , 10, 30 );
-        this.epee = new Epee(200);
         spriteJoueur();
         spriteEnnemi();
+        spriteEnnemiBoss();
         Animation();
         vueCoeur = new VueCoeur(Coeur);
-        joueur.setVueCoeur(vueCoeur); // Ensure the joueur object has the heart sprite reference
+        joueur.setVueCoeur(vueCoeur);
         gameLoop.play();
         spriteArme();
-
     }
 
     public void spriteJoueur() {
-
+        this.joueur = new Joueur(500 , 500 ,100, 15 , 8);
         paneMap.addEventFilter(KeyEvent.KEY_PRESSED, this::bougerJoueur);// Ajoutez ceci
         VueJoueur vueJoueur = new VueJoueur(joueur.getId(), paneMap);
         vueJoueur.creeVue();
@@ -71,14 +72,27 @@ public class Controller implements Initializable {
     }
 
     public void spriteEnnemi() {
+        this.ennemi = new Ennemi(100 , 100 , 20 , 8 , 5);
         VueEnnemi vueennemi = new VueEnnemi(ennemi.getId(), paneMap);
-        vueennemi.creeVue2();
+        vueennemi.creeVueEnnemi();
         Pane pane = vueennemi.getRec();
         pane.translateXProperty().bind(ennemi.translateXProperty());
         pane.translateYProperty().bind(ennemi.translateYProperty());
+        listEnnemis.add(ennemi);
+    }
+
+    public void spriteEnnemiBoss() {
+        this.ennemiBoss =new EnnemiBoss(700 , 700 , 80 , 10 , 10);
+        VueEnnemiBoss vueEnnemiBoss = new VueEnnemiBoss(ennemiBoss.getId(), paneMap);
+        vueEnnemiBoss.creeVueEnnemiBoss();
+        Pane pane = vueEnnemiBoss.getRec();
+        pane.translateXProperty().bind(ennemiBoss.translateXProperty());
+        pane.translateYProperty().bind(ennemiBoss.translateYProperty());
+        listEnnemis.add(ennemiBoss);
     }
 
     private void spriteArme() {
+        this.epee = new Epee(14);
         vueArmes = new VueArmes(paneMap, epee);
         vueArmes.armes();
         epee.setPosition(400, 200);
@@ -100,7 +114,9 @@ public class Controller implements Initializable {
                     } else if (temps % 5 == 0) {
                         ennemi.attaquer(joueur);
                         joueur.attaquer(ennemi);
+                        ennemiBoss.attaquer(joueur);
                         System.out.println(ennemi.getPv());
+                        System.out.println(ennemiBoss.getPv());
                         bougerEnnemi();
                     }
                     temps++;
@@ -138,27 +154,35 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
     public void bougerEnnemi() {
 
         Random random = new Random();
-        int direction = random.nextInt(4) + 1; // Génère un nombre aléatoire entre 1 et 4
+        int direction = random.nextInt(6) + 1; // Génère un nombre aléatoire entre 1 et 4
 
+        for (int i = 0; i < listEnnemis.size(); i++) {
             switch (direction) {
                 case 1:
-                    ennemi.depGauche();
+                    listEnnemis.get(i).depGauche();
                     break;
                 case 2:
-                    ennemi.depDroite();
+                    listEnnemis.get(i).depDroite();
                     break;
                 case 3:
-                    ennemi.depHaut();
+                    listEnnemis.get(i).depHaut();
                     break;
                 case 4:
-                    ennemi.depBas();
+                    listEnnemis.get(i).depBas();
                     break;
             }
         }
+
+
     }
+
+}
+
+
+
+
 
 

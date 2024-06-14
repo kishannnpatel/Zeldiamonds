@@ -42,4 +42,8 @@ public class Armes {
         this.translateY.set(y);
     }
 
+    public int getDegats() {
+        return degats;
+    }
+
 }
